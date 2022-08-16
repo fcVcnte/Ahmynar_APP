@@ -21,7 +21,7 @@ namespace Ahmynar_API.Controllers
 
         // GET: api/<SupplierController>
         [HttpGet]
-        public async Task<ActionResult<List<SupplierDto>>> GetAllSuppliers()
+        public async Task<ActionResult<List<SupplierListDto>>> GetAllSuppliers()
         {
             var suppliers = await _mediator.Send(new GetSuppliersListRequest());
             return suppliers;

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Product.Handlers.Queries
 {
-    public class GetProductDetailRequestHandler : IRequestHandler<GetProductDetailRequest, ProductDto>
+    public class GetBudgetDetailRequestHandler : IRequestHandler<GetProductDetailRequest, ProductDto>
     {
         private readonly IProductRepository _productRepo;
         private readonly IMapper _mapper;
 
-        public GetProductDetailRequestHandler(IProductRepository productRepo, IMapper mapper)
+        public GetBudgetDetailRequestHandler(IProductRepository productRepo, IMapper mapper)
         {
             _productRepo = productRepo;
             _mapper = mapper;

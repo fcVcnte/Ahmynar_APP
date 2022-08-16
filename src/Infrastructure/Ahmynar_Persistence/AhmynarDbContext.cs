@@ -28,6 +28,8 @@ namespace Ahmynar_Persistence
             return base.SaveChangesAsync(cancellationToken);
         }
 
+        public DbSet<Budget> Budgets { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
     }

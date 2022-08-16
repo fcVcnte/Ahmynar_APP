@@ -1,4 +1,6 @@
-﻿using Ahmynar_Application.DTOs.Product;
+﻿using Ahmynar_Application.DTOs.Budget;
+using Ahmynar_Application.DTOs.Customer;
+using Ahmynar_Application.DTOs.Product;
 using Ahmynar_Application.DTOs.Supplier;
 using Ahmynar_Domain;
 using AutoMapper;
@@ -9,6 +11,24 @@ namespace Ahmynar_Application.Profiles
     {
         public MappingProfile()
         {
+            #region Customer
+            CreateMap<Customer, CustomerDto>().ReverseMap();
+            CreateMap<Customer, CustomerListDto>().ReverseMap();
+            CreateMap<Customer, LegalEntityCustomerDto>().ReverseMap();
+            CreateMap<Customer, NaturalPersonCustomerDto>().ReverseMap();
+            CreateMap<Customer, CreateLegalEntityCustomerDto>().ReverseMap();
+            CreateMap<Customer, CreateNaturalPersonCustomerDto>().ReverseMap();
+            CreateMap<Customer, UpdateLegalEntityCustomerDto>().ReverseMap();
+            CreateMap<Customer, UpdateNaturalPersonCustomerDto>().ReverseMap();
+            #endregion Customer
+
+            #region Budget
+            CreateMap<Budget, BudgetDto>().ReverseMap();
+            CreateMap<Budget, BudgetListDto>().ReverseMap();
+            CreateMap<Budget, CreateBudgetDto>().ReverseMap();
+            CreateMap<Budget, UpdateBudgetDto>().ReverseMap();
+            #endregion Budget
+
             #region Product
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Product, ProductListDto>().ReverseMap();

@@ -1,6 +1,5 @@
 ﻿using Ahmynar_Domain.Common;
 using Ahmynar_Domain.Enums;
-using System.Collections.Generic;
 
 namespace Ahmynar_Domain
 {

@@ -21,7 +21,7 @@ namespace Ahmynar_API.Controllers
 
         // GET: api/<ProductController>
         [HttpGet]
-        public async Task<ActionResult<List<ProductDto>>> GetAllProducts()
+        public async Task<ActionResult<List<ProductListDto>>> GetAllProducts()
         {
             var products = await _mediator.Send(new GetProductsListRequest());
             return products;

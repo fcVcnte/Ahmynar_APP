@@ -19,11 +19,6 @@ namespace Ahmynar_Application.DTOs.Supplier.Validators
                 .NotNull()
                 .MaximumLength(40).WithMessage("{PropertyName} não pode exceder 40 caracteres.");
 
-            RuleFor(p => p.TradeName)
-                .NotEmpty().WithMessage("{PropertyName} é obrigatória.")
-                .NotNull()
-                .MaximumLength(40).WithMessage("{PropertyName} não pode exceder 40 caracteres.");
-
             RuleFor(p => p.Cnpj)
                 .NotEmpty().WithMessage("{PropertyName} é obrigatória.")
                 .NotNull()

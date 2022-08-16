@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Supplier.Handlers.Queries
 {
-    public class GetSuppliersListRequestHandler : IRequestHandler<GetSuppliersListRequest, List<SupplierDto>>
+    public class GetSuppliersListRequestHandler : IRequestHandler<GetSuppliersListRequest, List<SupplierListDto>>
     {
         private readonly ISupplierRepository _supplierRepo;
         private readonly IMapper _mapper;
@@ -20,10 +20,10 @@ namespace Ahmynar_Application.Features.Supplier.Handlers.Queries
             _mapper = mapper;
         }
 
-        public async Task<List<SupplierDto>> Handle(GetSuppliersListRequest request, CancellationToken cancellationToken)
+        public async Task<List<SupplierListDto>> Handle(GetSuppliersListRequest request, CancellationToken cancellationToken)
         {
             var suppliers = await _supplierRepo.GetAllAsync();
-            return _mapper.Map<List<SupplierDto>>(suppliers);
+            return _mapper.Map<List<SupplierListDto>>(suppliers);
         }
     }
 }

@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Product.Handlers.Commands
 {
-    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand>
+    public class DeleteBudgetCommandHandler : IRequestHandler<DeleteProductCommand>
     {
         private readonly IProductRepository _productRepo;
         private readonly IMapper _mapper;
 
-        public DeleteProductCommandHandler(IProductRepository productRepo, IMapper mapper)
+        public DeleteBudgetCommandHandler(IProductRepository productRepo, IMapper mapper)
         {
             _productRepo = productRepo;
             _mapper = mapper;
