@@ -1,5 +1,6 @@
 ﻿using Ahmynar_Application.DTOs.Budget;
 using Ahmynar_Application.DTOs.Common;
+using Ahmynar_Application.DTOs.Equipament;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +25,6 @@ namespace Ahmynar_Application.DTOs.Customer
         public string? Obs { get; set; }
 
         public ICollection<BudgetDto>? Budgets { get; set; }
+        public ICollection<EquipamentDto>? Equipaments { get; set; }
     }
 }

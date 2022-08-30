@@ -30,6 +30,7 @@ namespace Ahmynar_Persistence
 
         public DbSet<Budget> Budgets { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Equipament> Equipaments { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
     }

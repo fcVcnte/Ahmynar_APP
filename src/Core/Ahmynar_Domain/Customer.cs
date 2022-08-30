@@ -29,5 +29,7 @@ namespace Ahmynar_Domain
         public string? Obs { get; set; }
 
         public virtual ICollection<Budget>? Budgets { get; set; }
+
+        public virtual ICollection<Equipament>? Equipaments { get; set; }
     }
 }

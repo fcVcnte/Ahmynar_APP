@@ -1,4 +1,5 @@
-﻿using Ahmynar_Domain.Enums;
+﻿using Ahmynar_Application.DTOs.Common;
+using Ahmynar_Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.DTOs.Customer
 {
-    public class CustomerListDto
+    public class CustomerListDto : BaseDto
     {
         public TypeCustomer TypeCustomer { get; set; }
         public string? TradeName { get; set; }
