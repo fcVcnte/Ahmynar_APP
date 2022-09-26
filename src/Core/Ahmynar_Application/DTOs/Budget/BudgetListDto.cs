@@ -10,8 +10,10 @@ namespace Ahmynar_Application.DTOs.Budget
     public class BudgetListDto : BaseDto
     {
         public long Number { get; set; }
+        public Ahmynar_Domain.Enums.StatusDescription Status { get; set; }
         public DateTime ExpireDate { get; set; }
-        public float TotalDiscounts { get; set; }
+        public float? TotalServices { get; set; }
+        public float? TotalProducts { get; set; }
         public float Total { get; set; }
         public int CustomerId { get; set; }
     }

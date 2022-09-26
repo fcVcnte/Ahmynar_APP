@@ -37,14 +37,17 @@ namespace Ahmynar_Application.Features.Product.Handlers.Commands
                 response.Message = "Falha na criação";
                 response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
             }
+            else
+            {
+                var product = _mapper.Map<Ahmynar_Domain.Product>(request.ProductDto);
 
-            var product = _mapper.Map<Ahmynar_Domain.Product>(request.ProductDto);
+                product = await _productRepo.AddAsync(product);
 
-            product = await _productRepo.AddAsync(product);
+                response.Success = true;
+                response.Message = "Sucesso na criação";
+                response.Id = product.Id;
+            }
 
-            response.Success = true;
-            response.Message = "Sucesso na criação";
-            response.Id = product.Id;
             return response;
         }
     }

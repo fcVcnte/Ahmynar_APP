@@ -24,7 +24,7 @@ namespace Ahmynar_Application.DTOs.Customer
         public string Email { get; set; }
         public string? Obs { get; set; }
 
-        public ICollection<BudgetDto>? Budgets { get; set; }
-        public ICollection<EquipamentDto>? Equipaments { get; set; }
+        public List<BudgetDto>? Budgets { get; set; }
+        public List<EquipamentDto>? Equipaments { get; set; }
     }
 }

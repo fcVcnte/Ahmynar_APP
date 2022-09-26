@@ -16,12 +16,16 @@ namespace Ahmynar_Application.Features.Budget.Handlers.Commands
     {
         private readonly IBudgetRepository _budgetRepo;
         private readonly ICustomerRepository _customerRepo;
+        private readonly IProductRepository _productRepo;
+        private readonly IServiceRepository _serviceRepo;
         private readonly IMapper _mapper;
 
-        public CreateBudgetCommandHandler(IBudgetRepository budgetRepo, ICustomerRepository customerRepo, IMapper mapper)
+        public CreateBudgetCommandHandler(IBudgetRepository budgetRepo, ICustomerRepository customerRepo, IProductRepository productRepo, IServiceRepository serviceRepo, IMapper mapper)
         {
             _budgetRepo = budgetRepo;
             _customerRepo = customerRepo;
+            _productRepo = productRepo;
+            _serviceRepo = serviceRepo;
             _mapper = mapper;
         }
 
@@ -37,14 +41,17 @@ namespace Ahmynar_Application.Features.Budget.Handlers.Commands
                 response.Message = "Falha na criação";
                 response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
             }
+            else
+            {
+                var budget = _mapper.Map<Ahmynar_Domain.Budget>(request.BudgetDto);
 
-            var budget = _mapper.Map<Ahmynar_Domain.Budget>(request.BudgetDto);
+                budget = await _budgetRepo.AddAsync(budget);
 
-            budget = await _budgetRepo.AddAsync(budget);
+                response.Success = true;
+                response.Message = "Sucesso na criação";
+                response.Id = budget.Id;
+            }
 
-            response.Success = true;
-            response.Message = "Sucesso na criação";
-            response.Id = budget.Id;
             return response;
         }
     }

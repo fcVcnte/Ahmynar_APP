@@ -19,7 +19,14 @@ namespace Ahmynar_Application.DTOs.Budget.Validators
             RuleFor(p => p.Number)
                 .NotNull();
 
-            RuleFor(p => p.TotalDiscounts)
+            RuleFor(p => p.Status)
+                .NotNull()
+                .IsInEnum();
+
+            RuleFor(p => p.TotalServices)
+                .LessThan(p => p.Total);
+
+            RuleFor(p => p.TotalProducts)
                 .LessThan(p => p.Total);
 
             RuleFor(p => p.Total)

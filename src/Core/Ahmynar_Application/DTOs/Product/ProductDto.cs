@@ -1,4 +1,5 @@
-﻿using Ahmynar_Application.DTOs.Common;
+﻿using Ahmynar_Application.DTOs.Budget;
+using Ahmynar_Application.DTOs.Common;
 using Ahmynar_Application.DTOs.Supplier;
 
 namespace Ahmynar_Application.DTOs.Product
@@ -15,5 +16,6 @@ namespace Ahmynar_Application.DTOs.Product
         public int? SupplierId { get; set; }
 
         public SupplierDto? Supplier { get; set; }
+        public List<BudgetDto>? Budgets { get; set; }
     }
 }

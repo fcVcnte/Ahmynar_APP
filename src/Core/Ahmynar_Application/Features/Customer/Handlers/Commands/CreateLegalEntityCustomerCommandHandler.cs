@@ -35,14 +35,17 @@ namespace Ahmynar_Application.Features.Customer.Handlers.Commands
                 response.Message = "Falha na criação";
                 response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
             }
+            else
+            {
+                var customer = _mapper.Map<Ahmynar_Domain.Customer>(request.LegalEntityDto);
 
-            var customer = _mapper.Map<Ahmynar_Domain.Customer>(request.LegalEntityDto);
+                customer = await _customerRepo.AddAsync(customer);
 
-            customer = await _customerRepo.AddAsync(customer);
+                response.Success = true;
+                response.Message = "Sucesso na criação";
+                response.Id = customer.Id;
+            }
 
-            response.Success = true;
-            response.Message = "Sucesso na criação";
-            response.Id = customer.Id;
             return response;
         }
     }

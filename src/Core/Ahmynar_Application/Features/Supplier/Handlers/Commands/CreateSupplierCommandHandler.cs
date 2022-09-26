@@ -30,14 +30,17 @@ namespace Ahmynar_Application.Features.Supplier.Handlers.Commands
                 response.Message = "Falha na criação";
                 response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
             }
+            else
+            {
+                var supplier = _mapper.Map<Ahmynar_Domain.Supplier> (request.SupplierDto);
 
-            var supplier = _mapper.Map<Ahmynar_Domain.Supplier> (request.SupplierDto);
+                supplier = await _supplierRepo.AddAsync (supplier);
 
-            supplier = await _supplierRepo.AddAsync (supplier);
+                response.Success = true;
+                response.Message = "Sucesso na criação";
+                response.Id = supplier.Id;
+            }
 
-            response.Success = true;
-            response.Message = "Sucesso na criação";
-            response.Id = supplier.Id;
             return response;
         }
     }

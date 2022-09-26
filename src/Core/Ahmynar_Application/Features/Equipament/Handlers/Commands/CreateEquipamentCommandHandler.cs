@@ -37,14 +37,17 @@ namespace Ahmynar_Application.Features.Equipament.Handlers.Commands
                 response.Message = "Falha na criação";
                 response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
             }
+            else
+            {
+                var equipament = _mapper.Map<Ahmynar_Domain.Equipament>(request.EquipamentDto);
 
-            var equipament = _mapper.Map<Ahmynar_Domain.Equipament>(request.EquipamentDto);
+                equipament = await _equipamentRepo.AddAsync(equipament);
 
-            equipament = await _equipamentRepo.AddAsync(equipament);
+                response.Success = true;
+                response.Message = "Sucesso na criação";
+                response.Id = equipament.Id;
+            }
 
-            response.Success = true;
-            response.Message = "Sucesso na criação";
-            response.Id = equipament.Id;
             return response;
         }
     }

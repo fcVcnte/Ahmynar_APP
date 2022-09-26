@@ -54,10 +54,16 @@ namespace Ahmynar_Persistence.Migrations
                     b.Property<string>("Obs")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<float>("Total")
                         .HasColumnType("real");
 
-                    b.Property<float?>("TotalDiscounts")
+                    b.Property<float?>("TotalProducts")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("TotalServices")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
@@ -263,6 +269,89 @@ namespace Ahmynar_Persistence.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Ahmynar_Domain.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Obs")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("SalePrice")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
+                });
+
+            modelBuilder.Entity("Ahmynar_Domain.ServiceOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BudgetId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DepartureDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("Number")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Obs")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("TotalDiscounts")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BudgetId");
+
+                    b.ToTable("ServiceOrders");
+                });
+
             modelBuilder.Entity("Ahmynar_Domain.Supplier", b =>
                 {
                     b.Property<int>("Id")
@@ -348,6 +437,36 @@ namespace Ahmynar_Persistence.Migrations
                     b.ToTable("Suppliers");
                 });
 
+            modelBuilder.Entity("BudgetProduct", b =>
+                {
+                    b.Property<int>("BudgetsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BudgetsId", "ProductsId");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("BudgetProduct");
+                });
+
+            modelBuilder.Entity("BudgetService", b =>
+                {
+                    b.Property<int>("BudgetsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServicesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BudgetsId", "ServicesId");
+
+                    b.HasIndex("ServicesId");
+
+                    b.ToTable("BudgetService");
+                });
+
             modelBuilder.Entity("Ahmynar_Domain.Budget", b =>
                 {
                     b.HasOne("Ahmynar_Domain.Customer", "Customer")
@@ -377,6 +496,47 @@ namespace Ahmynar_Persistence.Migrations
                         .HasForeignKey("SupplierId");
 
                     b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("Ahmynar_Domain.ServiceOrder", b =>
+                {
+                    b.HasOne("Ahmynar_Domain.Budget", "Budget")
+                        .WithMany()
+                        .HasForeignKey("BudgetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Budget");
+                });
+
+            modelBuilder.Entity("BudgetProduct", b =>
+                {
+                    b.HasOne("Ahmynar_Domain.Budget", null)
+                        .WithMany()
+                        .HasForeignKey("BudgetsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ahmynar_Domain.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BudgetService", b =>
+                {
+                    b.HasOne("Ahmynar_Domain.Budget", null)
+                        .WithMany()
+                        .HasForeignKey("BudgetsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ahmynar_Domain.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Ahmynar_Domain.Customer", b =>

@@ -27,6 +27,8 @@ namespace Ahmynar_Persistence
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IEquipamentRepository, EquipamentRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IServiceRepository, ServiceRepository>();
+            services.AddScoped<IServiceOrderRepository, ServiceOrderRepository>();
             services.AddScoped<ISupplierRepository, SupplierRepository>();
 
             return services;
