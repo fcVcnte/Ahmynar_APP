@@ -269,6 +269,48 @@ namespace Ahmynar_Persistence.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Ahmynar_Domain.Sale", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("BudgetId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("InstallmentPayment")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Obs")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaymentSale")
+                        .HasColumnType("int");
+
+                    b.Property<float>("TotalSale")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BudgetId");
+
+                    b.ToTable("Sales");
+                });
+
             modelBuilder.Entity("Ahmynar_Domain.Service", b =>
                 {
                     b.Property<int>("Id")
@@ -467,6 +509,21 @@ namespace Ahmynar_Persistence.Migrations
                     b.ToTable("BudgetService");
                 });
 
+            modelBuilder.Entity("ProductSale", b =>
+                {
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SalesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductsId", "SalesId");
+
+                    b.HasIndex("SalesId");
+
+                    b.ToTable("ProductSale");
+                });
+
             modelBuilder.Entity("Ahmynar_Domain.Budget", b =>
                 {
                     b.HasOne("Ahmynar_Domain.Customer", "Customer")
@@ -496,6 +553,15 @@ namespace Ahmynar_Persistence.Migrations
                         .HasForeignKey("SupplierId");
 
                     b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("Ahmynar_Domain.Sale", b =>
+                {
+                    b.HasOne("Ahmynar_Domain.Budget", "Budget")
+                        .WithMany()
+                        .HasForeignKey("BudgetId");
+
+                    b.Navigation("Budget");
                 });
 
             modelBuilder.Entity("Ahmynar_Domain.ServiceOrder", b =>
@@ -535,6 +601,21 @@ namespace Ahmynar_Persistence.Migrations
                     b.HasOne("Ahmynar_Domain.Service", null)
                         .WithMany()
                         .HasForeignKey("ServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProductSale", b =>
+                {
+                    b.HasOne("Ahmynar_Domain.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ahmynar_Domain.Sale", null)
+                        .WithMany()
+                        .HasForeignKey("SalesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

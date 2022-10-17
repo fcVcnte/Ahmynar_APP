@@ -16,5 +16,6 @@ namespace Ahmynar_Domain
 
         public virtual Supplier? Supplier { get; set; }
         public virtual ICollection<Budget>? Budgets { get; set; }
+        public virtual ICollection<Sale>? Sales { get; set; }
     }
 }

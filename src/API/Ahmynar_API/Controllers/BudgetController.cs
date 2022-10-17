@@ -44,15 +44,6 @@ namespace Ahmynar_API.Controllers
             return Ok(response);
         }
 
-        // PUT api/<BudgetController>
-        [HttpPut]
-        public async Task<ActionResult> PutBudget([FromBody] UpdateBudgetDto budget)
-        {
-            var command = new UpdateBudgetCommand { BudgetDto = budget };
-            await _mediator.Send(command);
-            return NoContent();
-        }
-
         // DELETE api/<BudgetController>/{id}
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteBudget(int id)

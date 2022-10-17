@@ -20,10 +20,7 @@ namespace Ahmynar_Application.DTOs.Budget
         public float Total { get; set; }
         public string? Obs { get; set; }
         public int CustomerId { get; set; }
-        public int[] ServiceIds { get; set; }
-        public int[]? ProductIds { get; set; }
-
-        public ICollection<UpdateServiceDto> Services { get; set; }
-        public ICollection<UpdateProductDto>? Products { get; set; }
+        public List<int> ServiceIds { get; set; }
+        public List<int>? ProductIds { get; set; }
     }
 }

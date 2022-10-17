@@ -1,5 +1,6 @@
 ﻿using Ahmynar_Application.Contracts.Persistence;
 using Ahmynar_Application.DTOs.Budget.Validators;
+using Ahmynar_Application.DTOs.Product;
 using Ahmynar_Application.Features.Budget.Requests.Commands;
 using Ahmynar_Application.Responses;
 using AutoMapper;
@@ -43,7 +44,25 @@ namespace Ahmynar_Application.Features.Budget.Handlers.Commands
             }
             else
             {
+                ICollection<Ahmynar_Domain.Product> products = new List<Ahmynar_Domain.Product>();
+                ICollection<Ahmynar_Domain.Service> services = new List<Ahmynar_Domain.Service>();
+
+                foreach (int id in request.BudgetDto.ServiceIds)
+                {
+                    services.Add(await _serviceRepo.GetByIdAsync(id));
+                }
+
+                if (request.BudgetDto.ProductIds.Count != 0 && request.BudgetDto.ProductIds.ElementAt(0) != 0)
+                {
+                    foreach (int id in request.BudgetDto.ProductIds)
+                    {
+                        products.Add(await _productRepo.GetByIdAsync(id));
+                    }
+                }
+
                 var budget = _mapper.Map<Ahmynar_Domain.Budget>(request.BudgetDto);
+                budget.Products = products;
+                budget.Services = services;
 
                 budget = await _budgetRepo.AddAsync(budget);
 

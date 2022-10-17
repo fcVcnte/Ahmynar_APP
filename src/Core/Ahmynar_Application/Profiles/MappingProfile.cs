@@ -2,6 +2,7 @@
 using Ahmynar_Application.DTOs.Customer;
 using Ahmynar_Application.DTOs.Equipament;
 using Ahmynar_Application.DTOs.Product;
+using Ahmynar_Application.DTOs.Sale;
 using Ahmynar_Application.DTOs.Service;
 using Ahmynar_Application.DTOs.ServiceOrder;
 using Ahmynar_Application.DTOs.Supplier;
@@ -45,6 +46,15 @@ namespace Ahmynar_Application.Profiles
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
             #endregion Product
+
+            #region Sale
+            CreateMap<Sale, SaleDto>().ReverseMap();
+            CreateMap<Sale, SaleListDto>().ReverseMap();
+            CreateMap<Sale, SaleBudgetDto>().ReverseMap();
+            CreateMap<Sale, SaleProductsDto>().ReverseMap();
+            CreateMap<Sale, CreateSaleBudgetDto>().ReverseMap();
+            CreateMap<Sale, CreateSaleProductsDto>().ReverseMap();
+            #endregion Sale
 
             #region Service
             CreateMap<Service, ServiceDto>().ReverseMap();
