@@ -2,6 +2,12 @@
 {
     public partial class Client : IClient
     {
-        public HttpClient HttpClient => throw new NotImplementedException();
+        public HttpClient HttpClient
+        {
+            get
+            {
+                return _httpClient;
+            }
+        }
     }
 }

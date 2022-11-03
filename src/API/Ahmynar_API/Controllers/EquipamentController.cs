@@ -1,6 +1,7 @@
 ﻿using Ahmynar_Application.DTOs.Equipament;
 using Ahmynar_Application.Features.Equipament.Requests.Commands;
 using Ahmynar_Application.Features.Equipament.Requests.Queries;
+using Ahmynar_Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ namespace Ahmynar_API.Controllers
 
         // GET: api/<EquipamentController>
         [HttpGet]
-        public async Task<ActionResult<List<EquipamentListDto>>> GetAllEquipaments()
+        public async Task<ActionResult<List<EquipamentDto>>> GetAllEquipaments()
         {
             var equipaments = await _mediator.Send(new GetEquipamentsListRequest());
             return equipaments;
@@ -37,7 +38,9 @@ namespace Ahmynar_API.Controllers
 
         // POST api/<EquipamentController>
         [HttpPost]
-        public async Task<ActionResult> PostEquipament([FromBody] CreateEquipamentDto equipament)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> PostEquipament([FromBody] CreateEquipamentDto equipament)
         {
             var command = new CreateEquipamentCommand { EquipamentDto = equipament };
             var response = await _mediator.Send(command);
@@ -46,6 +49,9 @@ namespace Ahmynar_API.Controllers
 
         // PUT api/<EquipamentController>
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> PutEquipament([FromBody] UpdateEquipamentDto equipament)
         {
             var command = new UpdateEquipamentCommand { EquipamentDto = equipament };
@@ -55,6 +61,9 @@ namespace Ahmynar_API.Controllers
 
         // DELETE api/<EquipamentController>/{id}
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> DeleteEquipament(int id)
         {
             var command = new DeleteEquipamentCommand { Id = id };

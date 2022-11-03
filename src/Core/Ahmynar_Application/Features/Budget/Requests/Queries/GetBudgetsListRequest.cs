@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Budget.Requests.Queries
 {
-    public class GetBudgetsListRequest : IRequest<List<BudgetListDto>>
+    public class GetBudgetsListRequest : IRequest<List<BudgetDto>>
     {
     }
 }

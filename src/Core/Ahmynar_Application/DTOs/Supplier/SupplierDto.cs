@@ -23,6 +23,6 @@ namespace Ahmynar_Application.DTOs.Supplier
         public string? Website { get; set; }
         public string? Obs { get; set; }
 
-        public List<ProductDto>? Products { get; set; }
+        //public List<ProductDto>? Products { get; set; }
     }
 }

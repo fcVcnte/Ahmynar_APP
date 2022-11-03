@@ -11,6 +11,16 @@ namespace Ahmynar_Application.DTOs.Customer
 {
     public class CustomerDto : BaseDto
     {
+        public Ahmynar_Domain.Enums.TypeCustomer TypeCustomer { get; set; }
+        public string? CompanyName { get; set; }
+        public string? TradeName { get; set; }
+        public string? Cnpj { get; set; }
+        public string? IE { get; set; }
+        public string? IM { get; set; }
+        public string? CustomerName { get; set; }
+        public string? Cpf { get; set; }
+        public string? Rg { get; set; }
+        public DateTime? BirthDate { get; set; }
         public string? Phone { get; set; }
         public string? Cellphone { get; set; }
         public string Address { get; set; }

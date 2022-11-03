@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Sale.Handlers.Queries
 {
-    public class GetSalesListRequestHandler : IRequestHandler<GetSalesListRequest, List<SaleListDto>>
+    public class GetSalesListRequestHandler : IRequestHandler<GetSalesListRequest, List<SaleDto>>
     {
         private readonly ISaleRepository _saleRepo;
         private readonly IMapper _mapper;
@@ -22,10 +22,10 @@ namespace Ahmynar_Application.Features.Sale.Handlers.Queries
             _mapper = mapper;
         }
 
-        public async Task<List<SaleListDto>> Handle(GetSalesListRequest request, CancellationToken cancellationToken)
+        public async Task<List<SaleDto>> Handle(GetSalesListRequest request, CancellationToken cancellationToken)
         {
             var sales = await _saleRepo.GetAllAsync();
-            return _mapper.Map<List<SaleListDto>>(sales);
+            return _mapper.Map<List<SaleDto>>(sales);
         }
     }
 }

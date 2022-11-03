@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Service.Handlers.Queries
 {
-    public class GetServicesListRequestHandler : IRequestHandler<GetServicesListRequest, List<ServiceListDto>>
+    public class GetServicesListRequestHandler : IRequestHandler<GetServicesListRequest, List<ServiceDto>>
     {
         private readonly IServiceRepository _serviceRepo;
         private readonly IMapper _mapper;
@@ -22,10 +22,10 @@ namespace Ahmynar_Application.Features.Service.Handlers.Queries
             _mapper = mapper;
         }
 
-        public async Task<List<ServiceListDto>> Handle(GetServicesListRequest request, CancellationToken cancellationToken)
+        public async Task<List<ServiceDto>> Handle(GetServicesListRequest request, CancellationToken cancellationToken)
         {
             var services = await _serviceRepo.GetAllAsync();
-            return _mapper.Map<List<ServiceListDto>>(services);
+            return _mapper.Map<List<ServiceDto>>(services);
         }
     }
 }

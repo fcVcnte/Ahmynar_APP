@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.ServiceOrder.Requests.Queries
 {
-    public class GetServiceOrdersListRequest : IRequest<List<ServiceOrderListDto>>
+    public class GetServiceOrdersListRequest : IRequest<List<ServiceOrderDto>>
     {
     }
 }

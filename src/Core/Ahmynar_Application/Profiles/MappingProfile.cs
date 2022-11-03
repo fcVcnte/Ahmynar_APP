@@ -17,9 +17,6 @@ namespace Ahmynar_Application.Profiles
         {
             #region Customer
             CreateMap<Customer, CustomerDto>().ReverseMap();
-            CreateMap<Customer, CustomerListDto>().ReverseMap();
-            CreateMap<Customer, LegalEntityCustomerDto>().ReverseMap();
-            CreateMap<Customer, NaturalPersonCustomerDto>().ReverseMap();
             CreateMap<Customer, CreateLegalEntityCustomerDto>().ReverseMap();
             CreateMap<Customer, CreateNaturalPersonCustomerDto>().ReverseMap();
             CreateMap<Customer, UpdateLegalEntityCustomerDto>().ReverseMap();
@@ -28,28 +25,24 @@ namespace Ahmynar_Application.Profiles
 
             #region Budget
             CreateMap<Budget, BudgetDto>().ReverseMap();
-            CreateMap<Budget, BudgetListDto>().ReverseMap();
             CreateMap<Budget, CreateBudgetDto>().ReverseMap();
             CreateMap<Budget, UpdateBudgetDto>().ReverseMap();
             #endregion Budget
 
             #region Equipament
             CreateMap<Equipament, EquipamentDto>().ReverseMap();
-            CreateMap<Equipament, EquipamentListDto>().ReverseMap();
             CreateMap<Equipament, CreateEquipamentDto>().ReverseMap();
             CreateMap<Equipament, UpdateEquipamentDto>().ReverseMap();
             #endregion Equipament
 
             #region Product
             CreateMap<Product, ProductDto>().ReverseMap();
-            CreateMap<Product, ProductListDto>().ReverseMap();
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
             #endregion Product
 
             #region Sale
             CreateMap<Sale, SaleDto>().ReverseMap();
-            CreateMap<Sale, SaleListDto>().ReverseMap();
             CreateMap<Sale, SaleBudgetDto>().ReverseMap();
             CreateMap<Sale, SaleProductsDto>().ReverseMap();
             CreateMap<Sale, CreateSaleBudgetDto>().ReverseMap();
@@ -58,21 +51,18 @@ namespace Ahmynar_Application.Profiles
 
             #region Service
             CreateMap<Service, ServiceDto>().ReverseMap();
-            CreateMap<Service, ServiceListDto>().ReverseMap();
             CreateMap<Service, CreateServiceDto>().ReverseMap();
             CreateMap<Service, UpdateServiceDto>().ReverseMap();
             #endregion Service
 
             #region ServiceOrder
             CreateMap<ServiceOrder, ServiceOrderDto>().ReverseMap();
-            CreateMap<ServiceOrder, ServiceOrderListDto>().ReverseMap();
             CreateMap<ServiceOrder, CreateServiceOrderDto>().ReverseMap();
             CreateMap<ServiceOrder, UpdateServiceOrderDto>().ReverseMap();
             #endregion ServiceOrder
 
             #region Supplier
             CreateMap<Supplier, SupplierDto>().ReverseMap();
-            CreateMap<Supplier, SupplierListDto>().ReverseMap();
             CreateMap<Supplier, CreateSupplierDto>().ReverseMap();
             CreateMap<Supplier, UpdateSupplierDto>().ReverseMap();
             #endregion Supplier

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Budget.Handlers.Queries
 {
-    public class GetBudgetsListRequestHandler : IRequestHandler<GetBudgetsListRequest, List<BudgetListDto>>
+    public class GetBudgetsListRequestHandler : IRequestHandler<GetBudgetsListRequest, List<BudgetDto>>
     {
         private readonly IBudgetRepository _budgetRepo;
         private readonly IMapper _mapper;
@@ -19,10 +19,10 @@ namespace Ahmynar_Application.Features.Budget.Handlers.Queries
             _budgetRepo = budgetRepo;
             _mapper = mapper;
         }
-        public async Task<List<BudgetListDto>> Handle(GetBudgetsListRequest request, CancellationToken cancellationToken)
+        public async Task<List<BudgetDto>> Handle(GetBudgetsListRequest request, CancellationToken cancellationToken)
         {
             var budgets = await _budgetRepo.GetAllAsync();
-            return _mapper.Map<List<BudgetListDto>>(budgets);
+            return _mapper.Map<List<BudgetDto>>(budgets);
         }
     }
 }

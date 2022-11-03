@@ -1,6 +1,7 @@
 ﻿using Ahmynar_Application.DTOs.Sale;
 using Ahmynar_Application.Features.Sale.Requests.Commands;
 using Ahmynar_Application.Features.Sale.Requests.Queries;
+using Ahmynar_Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ namespace Ahmynar_API.Controllers
 
         // GET: api/<SaleController>
         [HttpGet]
-        public async Task<ActionResult<List<SaleListDto>>> GetAllSales()
+        public async Task<ActionResult<List<SaleDto>>> GetAllSales()
         {
             var sales = await _mediator.Send(new GetSalesListRequest());
             return sales;
@@ -45,7 +46,9 @@ namespace Ahmynar_API.Controllers
 
         // POST api/<SaleController>/SaleBudget
         [HttpPost("/[controller]/SaleBudget")]
-        public async Task<ActionResult> PostSaleBudget([FromBody] CreateSaleBudgetDto sale)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> PostSaleBudget([FromBody] CreateSaleBudgetDto sale)
         {
             var command = new CreateSaleBudgetCommand { SaleBudgetDto = sale };
             var response = await _mediator.Send(command);
@@ -54,7 +57,9 @@ namespace Ahmynar_API.Controllers
 
         // POST api/<SaleController>/SaleProducts
         [HttpPost("/[controller]/SaleProducts")]
-        public async Task<ActionResult> PostSaleProducts([FromBody] CreateSaleProductsDto sale)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> PostSaleProducts([FromBody] CreateSaleProductsDto sale)
         {
             var command = new CreateSaleProductsCommand { SaleProductsDto = sale };
             var response = await _mediator.Send(command);

@@ -1,6 +1,7 @@
 ﻿using Ahmynar_Application.DTOs.Budget;
 using Ahmynar_Application.Features.Budget.Requests.Commands;
 using Ahmynar_Application.Features.Budget.Requests.Queries;
+using Ahmynar_Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ namespace Ahmynar_API.Controllers
 
         // GET: api/<BudgetController>
         [HttpGet]
-        public async Task<ActionResult<List<BudgetListDto>>> GetAllBudgets()
+        public async Task<ActionResult<List<BudgetDto>>> GetAllBudgets()
         {
             var budgets = await _mediator.Send(new GetBudgetsListRequest());
             return budgets;
@@ -37,7 +38,9 @@ namespace Ahmynar_API.Controllers
 
         // POST api/<BudgetController>
         [HttpPost]
-        public async Task<ActionResult> PostBudget([FromBody] CreateBudgetDto budget)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> PostBudget([FromBody] CreateBudgetDto budget)
         {
             var command = new CreateBudgetCommand { BudgetDto = budget };
             var response = await _mediator.Send(command);
@@ -46,6 +49,9 @@ namespace Ahmynar_API.Controllers
 
         // DELETE api/<BudgetController>/{id}
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> DeleteBudget(int id)
         {
             var command = new DeleteBudgetCommand { Id = id };

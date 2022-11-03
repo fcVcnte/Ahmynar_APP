@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Equipament.Handlers.Queries
 {
-    public class GetEquipamentsListRequestHandler : IRequestHandler<GetEquipamentsListRequest, List<EquipamentListDto>>
+    public class GetEquipamentsListRequestHandler : IRequestHandler<GetEquipamentsListRequest, List<EquipamentDto>>
     {
         private readonly IEquipamentRepository _equipamentRepo;
         private readonly IMapper _mapper;
@@ -21,10 +21,10 @@ namespace Ahmynar_Application.Features.Equipament.Handlers.Queries
             _equipamentRepo = equipamentRepo;
             _mapper = mapper;
         }
-        public async Task<List<EquipamentListDto>> Handle(GetEquipamentsListRequest request, CancellationToken cancellationToken)
+        public async Task<List<EquipamentDto>> Handle(GetEquipamentsListRequest request, CancellationToken cancellationToken)
         {
             var equipaments = await _equipamentRepo.GetAllAsync();
-            return _mapper.Map<List<EquipamentListDto>>(equipaments);
+            return _mapper.Map<List<EquipamentDto>>(equipaments);
         }
     }
 }

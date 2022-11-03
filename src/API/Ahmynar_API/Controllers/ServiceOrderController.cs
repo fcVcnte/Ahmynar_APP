@@ -1,6 +1,7 @@
 ﻿using Ahmynar_Application.DTOs.ServiceOrder;
 using Ahmynar_Application.Features.ServiceOrder.Requests.Commands;
 using Ahmynar_Application.Features.ServiceOrder.Requests.Queries;
+using Ahmynar_Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ namespace Ahmynar_API.Controllers
 
         // GET: api/<ServiceOrderController>
         [HttpGet]
-        public async Task<ActionResult<List<ServiceOrderListDto>>> GetAllServiceOrders()
+        public async Task<ActionResult<List<ServiceOrderDto>>> GetAllServiceOrders()
         {
             var serviceOrders = await _mediator.Send(new GetServiceOrdersListRequest());
             return serviceOrders;
@@ -37,7 +38,9 @@ namespace Ahmynar_API.Controllers
 
         // POST api/<ServiceOrderController>
         [HttpPost]
-        public async Task<ActionResult> PostServiceOrder([FromBody] CreateServiceOrderDto serviceOrder)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> PostServiceOrder([FromBody] CreateServiceOrderDto serviceOrder)
         {
             var command = new CreateServiceOrderCommand { ServiceOrderDto = serviceOrder };
             var response = await _mediator.Send(command);
@@ -46,6 +49,9 @@ namespace Ahmynar_API.Controllers
 
         // PUT api/<ServiceOrderController>/
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> PutServiceOrder([FromBody] UpdateServiceOrderDto serviceOrder)
         {
             var command = new UpdateServiceOrderCommand { ServiceOrderDto = serviceOrder };
@@ -55,6 +61,9 @@ namespace Ahmynar_API.Controllers
 
         // DELETE api/<ServiceOrderController>/{id}
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> DeleteServiceOrder(int id)
         {
             var command = new DeleteServiceOrderCommand { Id = id };

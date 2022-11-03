@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Service.Requests.Queries
 {
-    public class GetServicesListRequest : IRequest<List<ServiceListDto>>
+    public class GetServicesListRequest : IRequest<List<ServiceDto>>
     {
     }
 }

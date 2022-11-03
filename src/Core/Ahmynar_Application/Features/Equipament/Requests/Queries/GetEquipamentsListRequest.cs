@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Equipament.Requests.Queries
 {
-    public class GetEquipamentsListRequest : IRequest<List<EquipamentListDto>>
+    public class GetEquipamentsListRequest : IRequest<List<EquipamentDto>>
     {
     }
 }

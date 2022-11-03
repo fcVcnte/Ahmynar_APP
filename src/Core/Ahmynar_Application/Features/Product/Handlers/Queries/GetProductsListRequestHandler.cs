@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Product.Handlers.Queries
 {
-    public class GetProductsListRequestHandler : IRequestHandler<GetProductsListRequest, List<ProductListDto>>
+    public class GetProductsListRequestHandler : IRequestHandler<GetProductsListRequest, List<ProductDto>>
     {
         private readonly IProductRepository _productRepo;
         private readonly IMapper _mapper;
@@ -19,10 +19,10 @@ namespace Ahmynar_Application.Features.Product.Handlers.Queries
             _productRepo = productRepo;
             _mapper = mapper;
         }
-        public async Task<List<ProductListDto>> Handle(GetProductsListRequest request, CancellationToken cancellationToken)
+        public async Task<List<ProductDto>> Handle(GetProductsListRequest request, CancellationToken cancellationToken)
         {
             var products = await _productRepo.GetAllAsync();
-            return _mapper.Map<List<ProductListDto>>(products);
+            return _mapper.Map<List<ProductDto>>(products);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Ahmynar_Application.DTOs.Supplier;
 using Ahmynar_Application.Features.Supplier.Requests.Commands;
 using Ahmynar_Application.Features.Supplier.Requests.Queries;
+using Ahmynar_Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ namespace Ahmynar_API.Controllers
 
         // GET: api/<SupplierController>
         [HttpGet]
-        public async Task<ActionResult<List<SupplierListDto>>> GetAllSuppliers()
+        public async Task<ActionResult<List<SupplierDto>>> GetAllSuppliers()
         {
             var suppliers = await _mediator.Send(new GetSuppliersListRequest());
             return suppliers;
@@ -37,7 +38,9 @@ namespace Ahmynar_API.Controllers
 
         // POST api/<SupplierController>
         [HttpPost]
-        public async Task<ActionResult> PostSupplier([FromBody] CreateSupplierDto supplier)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> PostSupplier([FromBody] CreateSupplierDto supplier)
         {
             var command = new CreateSupplierCommand { SupplierDto = supplier };
             var response = await _mediator.Send(command);
@@ -46,6 +49,9 @@ namespace Ahmynar_API.Controllers
 
         // PUT api/<SupplierController>/
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> PutSupplier([FromBody] UpdateSupplierDto supplier)
         {
             var command = new UpdateSupplierCommand { SupplierDto = supplier };
@@ -55,6 +61,9 @@ namespace Ahmynar_API.Controllers
 
         // DELETE api/<SupplierController>/{id}
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> DeleteSupplier(int id)
         {
             var command = new DeleteSupplierCommand { Id = id };

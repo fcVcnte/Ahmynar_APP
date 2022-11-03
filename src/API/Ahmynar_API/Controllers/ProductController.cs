@@ -1,6 +1,7 @@
 ﻿using Ahmynar_Application.DTOs.Product;
 using Ahmynar_Application.Features.Product.Requests.Commands;
 using Ahmynar_Application.Features.Product.Requests.Queries;
+using Ahmynar_Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ namespace Ahmynar_API.Controllers
 
         // GET: api/<ProductController>
         [HttpGet]
-        public async Task<ActionResult<List<ProductListDto>>> GetAllProducts()
+        public async Task<ActionResult<List<ProductDto>>> GetAllProducts()
         {
             var products = await _mediator.Send(new GetProductsListRequest());
             return products;
@@ -37,7 +38,9 @@ namespace Ahmynar_API.Controllers
 
         // POST api/<ProductController>
         [HttpPost]
-        public async Task<ActionResult> PostProduct([FromBody] CreateProductDto product)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> PostProduct([FromBody] CreateProductDto product)
         {
             var command = new CreateProductCommand { ProductDto = product };
             var response = await _mediator.Send(command);
@@ -46,6 +49,9 @@ namespace Ahmynar_API.Controllers
 
         // PUT api/<ProductController>
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> PutProduct([FromBody] UpdateProductDto product)
         {
             var command = new UpdateProductCommand { ProductDto = product };
@@ -55,6 +61,9 @@ namespace Ahmynar_API.Controllers
 
         // DELETE api/<ProductController>/{id}
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> DeleteProduct(int id)
         {
             var command = new DeleteProductCommand { Id = id };

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Ahmynar_Application.Features.Supplier.Requests.Queries
 {
-    public class GetSuppliersListRequest : IRequest<List<SupplierListDto>>
+    public class GetSuppliersListRequest : IRequest<List<SupplierDto>>
     {
     }
 }
