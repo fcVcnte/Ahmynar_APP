@@ -62,23 +62,12 @@ namespace Ahmynar_MVC.Services
         public async Task<ProductVM> GetProductDetails(int id)
         {
             var product = await _client.ProductGETAsync(id);
-            if (product.SupplierId.HasValue)
-            {
-                product.Supplier = await _client.SupplierGETAsync((int)product.SupplierId);
-            }
             return _mapper.Map<ProductVM>(product);
         }
 
         public async Task<List<ProductVM>> GetProducts()
         {
             var products = await _client.ProductAllAsync();
-            foreach (var product in products)
-            {
-                if (product.SupplierId.HasValue)
-                {
-                    product.Supplier = await _client.SupplierGETAsync((int)product.SupplierId);
-                }
-            }
             return _mapper.Map<List<ProductVM>>(products);
         }
 
@@ -89,6 +78,32 @@ namespace Ahmynar_MVC.Services
                 UpdateProductDto productDto = _mapper.Map<UpdateProductDto>(product);
                 await _client.ProductPUTAsync(productDto);
                 return new Response<int> { Success = true };
+            }
+            catch (ApiException ex)
+            {
+                return ConvertApiExceptions<int>(ex);
+            }
+        }
+
+        public async Task<Response<int>> CheckInProduct(int id, int quantityIn)
+        {
+            try
+            {
+                await _client.CheckInAsync(id, quantityIn);
+                return new Response<int> { Success = false };
+            }
+            catch (ApiException ex)
+            {
+                return ConvertApiExceptions<int>(ex);
+            }
+        }
+
+        public async Task<Response<int>> CheckOutProduct(int id, int quantityOut)
+        {
+            try
+            {
+                await _client.CheckOutAsync(id, quantityOut);
+                return new Response<int> { Success = false };
             }
             catch (ApiException ex)
             {

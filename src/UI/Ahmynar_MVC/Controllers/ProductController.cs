@@ -8,26 +8,26 @@ namespace Ahmynar_MVC.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IProductService _producServ;
+        private readonly IProductService _productServ;
         private readonly ISupplierService _supplierServ;
 
         public ProductController(IProductService producServ, ISupplierService supplierServ)
         {
-            this._producServ = producServ;
+            this._productServ = producServ;
             this._supplierServ = supplierServ;
         }
 
         // GET: ProductController
         public async Task<ActionResult> Index()
         {
-            var products = await _producServ.GetProducts();
+            var products = await _productServ.GetProducts();
             return View(products);
         }
 
         // GET: ProductController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var product = await _producServ.GetProductDetails(id);
+            var product = await _productServ.GetProductDetails(id);
             return View(product);
         }
 
@@ -50,7 +50,7 @@ namespace Ahmynar_MVC.Controllers
         {
             try
             {
-                var response = await _producServ.CreateProduct(product);
+                var response = await _productServ.CreateProduct(product);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
@@ -72,7 +72,7 @@ namespace Ahmynar_MVC.Controllers
         // GET: ProductController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var product = await _producServ.GetProductDetails(id);
+            var product = await _productServ.GetProductDetails(id);
             var suppliers = await _supplierServ.GetSuppliers();
             var supplierItems = new SelectList(suppliers, "Id", "TradeName");
 
@@ -88,7 +88,7 @@ namespace Ahmynar_MVC.Controllers
         {
             try
             {
-                var response = await _producServ.UpdateProduct(product);
+                var response = await _productServ.UpdateProduct(product);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
@@ -109,7 +109,7 @@ namespace Ahmynar_MVC.Controllers
         {
             try
             {
-                var response = await _producServ.DeleteProduct(id);
+                var response = await _productServ.DeleteProduct(id);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));

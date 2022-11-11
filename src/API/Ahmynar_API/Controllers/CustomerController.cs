@@ -37,7 +37,7 @@ namespace Ahmynar_API.Controllers
         }
 
         // POST api/<CustomerController>/LegalEntity
-        [HttpPost("/[controller]/LegalEntity")]
+        [HttpPost("LegalEntity")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> PostLegalEntityCustomer([FromBody] CreateLegalEntityCustomerDto customer)
@@ -48,7 +48,7 @@ namespace Ahmynar_API.Controllers
         }
 
         // POST api/<CustomerController>/NaturalPerson
-        [HttpPost("/[controller]/NaturalPerson")]
+        [HttpPost("NaturalPerson")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> PostNaturalPersonCustomer([FromBody] CreateNaturalPersonCustomerDto customer)
@@ -59,7 +59,7 @@ namespace Ahmynar_API.Controllers
         }
 
         // PUT api/<CustomerController>/LegalEntity
-        [HttpPut("/[controller]/LegalEntity")]
+        [HttpPut("LegalEntity")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
@@ -71,7 +71,7 @@ namespace Ahmynar_API.Controllers
         }
 
         // PUT api/<CustomerController>/NaturalPerson
-        [HttpPut("/[controller]/NaturalPerson")]
+        [HttpPut("NaturalPerson")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
@@ -83,7 +83,7 @@ namespace Ahmynar_API.Controllers
         }
 
         // DELETE api/<CustomerController>/{id}
-        [HttpDelete("/[controller]/{id}")]
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

@@ -25,7 +25,7 @@ namespace Ahmynar_Application.DTOs.Product.Validators
 
             RuleFor(p => p.Quantity)
                 .NotNull()
-                .GreaterThan((ushort)0);
+                .GreaterThan(0);
 
             RuleFor(p => p.Unit)
                 .MaximumLength(15).WithMessage("{PropertyName} não pode exceder 15 caracteres.");

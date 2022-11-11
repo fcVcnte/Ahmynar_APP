@@ -6,6 +6,7 @@ namespace Ahmynar_MVC.Contracts
     public interface ICustomerService
     {
         Task<List<CustomerVM>> GetCustomers();
+        Task<List<CustomerVM>> GetCustomersList();
         Task<CustomerVM> GetCustomerDetails(int id);
         Task<Response<int>> CreateCustomer(CreateCustomerVM customer);
         Task<Response<int>> UpdateCustomer(CustomerVM customer);

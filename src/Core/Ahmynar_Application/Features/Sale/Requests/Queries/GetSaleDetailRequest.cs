@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Sale.Requests.Queries
 {
-    public class GetSaleProductsDetailRequest : IRequest<SaleProductsDto>
+    public class GetSaleDetailRequest : IRequest<SaleDto>
     {
         public int Id { get; set; }
     }

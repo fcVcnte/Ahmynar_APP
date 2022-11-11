@@ -17,8 +17,4 @@
     <ProjectReference Include="..\Ahmynar_Domain\Ahmynar_Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\Infrastructure\" />
-  </ItemGroup>
-
 </Project>

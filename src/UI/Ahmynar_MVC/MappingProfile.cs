@@ -26,8 +26,8 @@ namespace Ahmynar_MVC
             CreateMap<UpdateProductDto, ProductVM>().ReverseMap();
 
             CreateMap<SaleDto, SaleVM>().ReverseMap();
-            CreateMap<CreateSaleBudgetDto, CreateSaleBudgetVM>().ReverseMap();
-            CreateMap<CreateSaleProductsDto, CreateSaleProductsVM>().ReverseMap();
+            CreateMap<CreateSaleBudgetDto, CreateSaleVM>().ReverseMap();
+            CreateMap<CreateSaleProductsDto, CreateSaleVM>().ReverseMap();
 
             CreateMap<ServiceOrderDto, ServiceOrderVM>().ReverseMap();
             CreateMap<CreateServiceOrderDto, CreateServiceOrderVM>().ReverseMap();

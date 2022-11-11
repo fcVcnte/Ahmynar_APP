@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ahmynar_MVC.Models
 {
-    public class ServiceOrderVM
+    public class ServiceOrderVM : CreateServiceOrderVM
     {
         public int Id { get; set; }
         public BudgetVM Budget { get; set; }

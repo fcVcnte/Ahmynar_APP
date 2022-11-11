@@ -11,21 +11,21 @@ using System.Threading.Tasks;
 
 namespace Ahmynar_Application.Features.Sale.Handlers.Queries
 {
-    public class GetSaleProductsDetailRequestHandler : IRequestHandler<GetSaleProductsDetailRequest, SaleProductsDto>
+    public class GetSaleDetailRequestHandler : IRequestHandler<GetSaleDetailRequest, SaleDto>
     {
         private readonly ISaleRepository _saleRepo;
         private readonly IMapper _mapper;
 
-        public GetSaleProductsDetailRequestHandler(ISaleRepository saleRepo, IMapper mapper)
+        public GetSaleDetailRequestHandler(ISaleRepository saleRepo, IMapper mapper)
         {
             _saleRepo = saleRepo;
             _mapper = mapper;
         }
 
-        public async Task<SaleProductsDto> Handle(GetSaleProductsDetailRequest request, CancellationToken cancellationToken)
+        public async Task<SaleDto> Handle(GetSaleDetailRequest request, CancellationToken cancellationToken)
         {
             var sale = await _saleRepo.GetByIdAsync(request.Id);
-            return _mapper.Map<SaleProductsDto>(sale);
+            return _mapper.Map<SaleDto>(sale);
         }
     }
 }

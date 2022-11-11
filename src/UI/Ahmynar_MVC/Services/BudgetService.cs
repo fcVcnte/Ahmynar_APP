@@ -46,6 +46,19 @@ namespace Ahmynar_MVC.Services
             }
         }
 
+        public async Task<Response<int>> CancelBudget(int id)
+        {
+            try
+            {
+                await _client.CancelAsync(id);
+                return new Response<int> { Success = false };
+            }
+            catch (ApiException ex)
+            {
+                return ConvertApiExceptions<int>(ex);
+            }
+        }
+
         public async Task<Response<int>> DeleteBudget(int id)
         {
             try
@@ -62,23 +75,12 @@ namespace Ahmynar_MVC.Services
         public async Task<BudgetVM> GetBudgetDetails(int id)
         {
             var budget = await _client.BudgetGETAsync(id);
-            //if (budget.Products.Any())
-            //{
-            //    budget.Products = await _client.SupplierGETAsync((int)budget.SupplierId);
-            //}
             return _mapper.Map<BudgetVM>(budget);
         }
 
         public async Task<List<BudgetVM>> GetBudgets()
         {
             var budgets = await _client.BudgetAllAsync();
-            //foreach (var budget in budgets)
-            //{
-            //    if (budget.SupplierId.HasValue)
-            //    {
-            //        budget.Supplier = await _client.SupplierGETAsync((int)budget.SupplierId);
-            //    }
-            //}
             return _mapper.Map<List<BudgetVM>>(budgets);
         }
     }

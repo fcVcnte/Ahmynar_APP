@@ -13,7 +13,5 @@ namespace Ahmynar_Application.DTOs.Service
         public string Description { get; set; }
         public float SalePrice { get; set; }
         public string? Obs { get; set; }
-
-        public List<BudgetDto>? Budgets { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace Ahmynar_MVC.Models
 
         [Required]
         [Display(Name = "Quantidade")]
-        public ushort Quantity { get; set; }
+        public int Quantity { get; set; }
 
         [Display(Name = "Unidade")]
         public string? Unit { get; set; }

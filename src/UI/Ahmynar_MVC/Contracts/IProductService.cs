@@ -9,6 +9,8 @@ namespace Ahmynar_MVC.Contracts
         Task<ProductVM> GetProductDetails(int id);
         Task<Response<int>> CreateProduct(CreateProductVM product);
         Task<Response<int>> UpdateProduct(ProductVM product);
+        Task<Response<int>> CheckInProduct(int id, int quantityIn);
+        Task<Response<int>> CheckOutProduct(int id, int quantityOut);
         Task<Response<int>> DeleteProduct(int id);
     }
 }

@@ -6,32 +6,51 @@
     <title>@ViewData["Title"] - Ahmynar_MVC</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/global.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Ahmynar_MVC.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ahmynar_MVC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Clientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Produtos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Supplier" asp-action="Index">Fornecedores</a>
-                        </li>
-                    </ul>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3">
+            <div class="container-fluid menu-div">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/Logo.png" class="logo"/>
+                </a>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-sm-evenly">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-dropdown dropdown-toggle" id="dropdownCustomer" data-bs-toggle="dropdown" aria-expanded="false">
+                            Clientes
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownCustomer">
+                            <a class="dropdown-item anchor-dropdown" asp-area="" asp-controller="Customer" asp-action="Index">Clientes</a>
+                            <a class="dropdown-item anchor-dropdown" asp-area="" asp-controller="Equipament" asp-action="Index">Equipamentos</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-dropdown dropdown-toggle" id="dropdownBudget" data-bs-toggle="dropdown" aria-expanded="false">
+                            Orçamentos
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownBudget">
+                            <a class="dropdown-item anchor-dropdown" asp-area="" asp-controller="Budget" asp-action="Index">Orçamentos</a>
+                            <a class="dropdown-item anchor-dropdown" asp-area="" asp-controller="ServiceOrder" asp-action="Index">Ordens de Serviço</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item anchor-dropdown" asp-area="" asp-controller="Service" asp-action="Index">Serviço</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-dropdown dropdown-toggle" id="dropdownStock" data-bs-toggle="dropdown" aria-expanded="false">
+                            Estoque
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownStock">
+                            <a class="dropdown-item anchor-dropdown" asp-area="" asp-controller="Product" asp-action="Index">Produtos</a>
+                            <a class="dropdown-item anchor-dropdown" asp-area="" asp-controller="Supplier" asp-action="Index">Fornecedores</a>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-dropdown">
+                            <a class="dropdown-item anchor-dropdown" asp-area="" asp-controller="Sale" asp-action="Index">Vendas</a>
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -48,8 +67,11 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-mask/jquery.mask.min.js"></script>
+    <script src="~/lib/jquery-mark/jquery.mark.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/global.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

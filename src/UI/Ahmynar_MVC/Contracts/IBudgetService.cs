@@ -8,6 +8,7 @@ namespace Ahmynar_MVC.Contracts
         Task<List<BudgetVM>> GetBudgets();
         Task<BudgetVM> GetBudgetDetails(int id);
         Task<Response<int>> CreateBudget(CreateBudgetVM budget);
+        Task<Response<int>> CancelBudget(int id);
         Task<Response<int>> DeleteBudget(int id);
     }
 }

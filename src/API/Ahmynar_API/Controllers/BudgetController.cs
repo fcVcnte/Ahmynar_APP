@@ -47,6 +47,18 @@ namespace Ahmynar_API.Controllers
             return Ok(response);
         }
 
+        // PUT api/<BudgetController>
+        [HttpPut("Cancel/{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> CancelBudget(int id)
+        {
+            var command = new CancelBudgetCommand { Id = id };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
         // DELETE api/<BudgetController>/{id}
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

@@ -5,8 +5,6 @@ namespace Ahmynar_MVC.Models
     public class CustomerVM : CreateCustomerVM
     {
         public int Id { get; set; }
-        public List<BudgetVM>? Budgets { get; set; }
-        public List<EquipamentVM>? Equipaments { get; set; }
     }
 
     public class CreateCustomerVM

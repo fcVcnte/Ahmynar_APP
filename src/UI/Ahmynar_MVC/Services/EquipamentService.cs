@@ -62,17 +62,12 @@ namespace Ahmynar_MVC.Services
         public async Task<EquipamentVM> GetEquipamentDetails(int id)
         {
             var equipament = await _client.EquipamentGETAsync(id);
-            equipament.Customer = await _client.CustomerGETAsync((int)equipament.CustomerId);
             return _mapper.Map<EquipamentVM>(equipament);
         }
 
         public async Task<List<EquipamentVM>> GetEquipaments()
         {
             var equipaments = await _client.EquipamentAllAsync();
-            foreach (var equipament in equipaments)
-            {                
-                equipament.Customer = await _client.CustomerGETAsync((int)equipament.CustomerId);
-            }
             return _mapper.Map<List<EquipamentVM>>(equipaments);
         }
 

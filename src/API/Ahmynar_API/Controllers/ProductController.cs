@@ -59,6 +59,30 @@ namespace Ahmynar_API.Controllers
             return NoContent();
         }
 
+        // PUT api/<ProductController>/CheckIn/{id}{quantityIn}
+        [HttpPut("CheckIn/{id}|{quantityIn}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> CheckInProduct(int id, int quantityIn)
+        {
+            var command = new CheckInProductCommand { Id = id, QuantityIn = quantityIn };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        // PUT api/<ProductController>/CheckOut/{id}{quantityOut}
+        [HttpPut("CheckOut/{id}|{quantityOut}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> CheckOutProduct(int id, int quantityOut)
+        {
+            var command = new CheckOutProductCommand { Id = id, QuantityOut = quantityOut };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
         // DELETE api/<ProductController>/{id}
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

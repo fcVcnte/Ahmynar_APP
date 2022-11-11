@@ -43,8 +43,6 @@ namespace Ahmynar_Application.Profiles
 
             #region Sale
             CreateMap<Sale, SaleDto>().ReverseMap();
-            CreateMap<Sale, SaleBudgetDto>().ReverseMap();
-            CreateMap<Sale, SaleProductsDto>().ReverseMap();
             CreateMap<Sale, CreateSaleBudgetDto>().ReverseMap();
             CreateMap<Sale, CreateSaleProductsDto>().ReverseMap();
             #endregion Sale

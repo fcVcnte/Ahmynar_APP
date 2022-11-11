@@ -28,24 +28,16 @@ namespace Ahmynar_API.Controllers
             return sales;
         }
 
-        // GET api/<SaleController>/SaleBudget/{id}
-        [HttpGet("/[controller]/SaleBudget/{id}")]
-        public async Task<ActionResult<SaleDto>> GetSaleBudget(int id)
+        // GET api/<SaleController>/Sale/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<SaleDto>> GetSale(int id)
         {
-            var sale = await _mediator.Send(new GetSaleBudgetDetailRequest { Id = id });
-            return Ok(sale);
-        }
-
-        // GET api/<SaleController>/SaleProducts/{id}
-        [HttpGet("/[controller]/SaleProducts/{id}")]
-        public async Task<ActionResult<SaleDto>> GetSaleProducts(int id)
-        {
-            var sale = await _mediator.Send(new GetSaleProductsDetailRequest { Id = id });
+            var sale = await _mediator.Send(new GetSaleDetailRequest { Id = id });
             return Ok(sale);
         }
 
         // POST api/<SaleController>/SaleBudget
-        [HttpPost("/[controller]/SaleBudget")]
+        [HttpPost("SaleBudget")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> PostSaleBudget([FromBody] CreateSaleBudgetDto sale)
@@ -56,7 +48,7 @@ namespace Ahmynar_API.Controllers
         }
 
         // POST api/<SaleController>/SaleProducts
-        [HttpPost("/[controller]/SaleProducts")]
+        [HttpPost("SaleProducts")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> PostSaleProducts([FromBody] CreateSaleProductsDto sale)

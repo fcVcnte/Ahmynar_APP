@@ -19,14 +19,13 @@ namespace Ahmynar_Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        //public async Task<IReadOnlyList<Equipament>> GetAllAsync()
-        //{
-        //    return await _dbContext.Equipaments.Include(e => e.Customer).ToListAsync();
-        //}
-
-        //public async Task<Equipament> GetByIdAsync(int id)
-        //{
-        //    return await _dbContext.Equipaments.Include(e => e.Customer).FirstOrDefaultAsync(e => e.Id == id);
-        //}
+        public new async Task<IReadOnlyList<Equipament>> GetAllAsync()
+        {
+            return await _dbContext.Set<Equipament>().Include(e => e.Customer).ToListAsync();
+        }
+        public new async Task<Equipament> GetByIdAsync(int id)
+        {
+            return await _dbContext.Set<Equipament>().Include(e => e.Customer).FirstOrDefaultAsync(e => e.Id == id);
+        }
     }
 }

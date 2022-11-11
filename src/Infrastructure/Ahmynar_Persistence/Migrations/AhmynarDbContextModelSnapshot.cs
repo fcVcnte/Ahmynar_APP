@@ -304,6 +304,9 @@ namespace Ahmynar_Persistence.Migrations
                     b.Property<float>("TotalSale")
                         .HasColumnType("real");
 
+                    b.Property<int>("TypeSale")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BudgetId");

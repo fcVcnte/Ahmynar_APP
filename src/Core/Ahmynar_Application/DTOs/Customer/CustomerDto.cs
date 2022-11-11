@@ -33,8 +33,5 @@ namespace Ahmynar_Application.DTOs.Customer
         public string Country { get; set; }
         public string Email { get; set; }
         public string? Obs { get; set; }
-
-        public List<BudgetDto>? Budgets { get; set; }
-        public List<EquipamentDto>? Equipaments { get; set; }
     }
 }

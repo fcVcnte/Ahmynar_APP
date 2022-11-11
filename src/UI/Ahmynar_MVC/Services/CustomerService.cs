@@ -88,7 +88,20 @@ namespace Ahmynar_MVC.Services
 
         public async Task<List<CustomerVM>> GetCustomers()
         {
-            var customers = await _client.CustomersAllAsync();
+            var customers = await _client.CustomerAllAsync();
+            return _mapper.Map<List<CustomerVM>>(customers);
+        }
+
+        public async Task<List<CustomerVM>> GetCustomersList()
+        {
+            var customers = await _client.CustomerAllAsync();
+            foreach (CustomerDto customer in customers)
+            {
+                if (String.IsNullOrEmpty(customer.TradeName))
+                {
+                    customer.TradeName = customer.CustomerName;
+                }
+            }
             return _mapper.Map<List<CustomerVM>>(customers);
         }
 

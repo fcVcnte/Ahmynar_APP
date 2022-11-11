@@ -7,8 +7,6 @@ namespace Ahmynar_MVC.Contracts
     {
         Task<List<SaleVM>> GetSales();
         Task<SaleVM> GetSaleDetails(int id);
-        Task<Response<int>> CreateSaleBudget(CreateSaleBudgetVM saleBudget);
-        Task<Response<int>> CreateSaleProducts(CreateSaleProductsVM saleProducts);
-        Task<Response<int>> DeleteSale(int id);
+        Task<Response<int>> CreateSale(CreateSaleVM sale);
     }
 }

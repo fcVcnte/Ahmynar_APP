@@ -8,6 +8,7 @@ namespace Ahmynar_MVC.Contracts
         Task<List<ServiceOrderVM>> GetServiceOrders();
         Task<ServiceOrderVM> GetServiceOrderDetails(int id);
         Task<Response<int>> CreateServiceOrder(CreateServiceOrderVM serviceOrder);
+        Task<Response<int>> UpdateServiceOrder(ServiceOrderVM serviceOrder);
         Task<Response<int>> DeleteServiceOrder(int id);
     }
 }

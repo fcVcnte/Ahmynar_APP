@@ -4,153 +4,315 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 class="detail-title">Detalhes</h1>
 
-<div>
-    <h4>CustomerVM</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TypeCustomer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TypeCustomer)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CompanyName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TradeName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TradeName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cnpj)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cnpj)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IE)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IE)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IM)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IM)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomerName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustomerName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cpf)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cpf)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Rg)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Rg)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cellphone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cellphone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Number)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Number)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AddressComplement)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AddressComplement)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.State)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cep)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cep)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Obs)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Obs)
-        </dd>
-    </dl>
+<div class="detail-page d-flex flex-column mb-4">
+    @if (Model.TypeCustomer == Ahmynar_Domain.Enums.TypeCustomer.LegalEntity)
+    {
+        <h4 class="detail-name">@Html.DisplayFor(model => model.TradeName) ► @Html.DisplayFor(model => model.TypeCustomer)</h4>
+        <div class="detail-group-data mb-2">
+            <span class="detail-group-desc">Dados pessoais</span>
+            <div class="d-flex justify-content-between mt-2">
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.CompanyName)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.CompanyName)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Cnpj)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Cnpj)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.IE)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.IE)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.IM)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.IM)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail-group-data mb-2">
+            <span class="detail-group-desc">Dados de contato</span>
+            <div class="d-flex justify-content-between mt-2">
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Phone)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Cellphone)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Cellphone)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Email)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail-group-data mb-2">
+            <span class="detail-group-desc">Dados de endereço</span>
+            <div class="d-flex justify-content-between mt-2">
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Address)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Address)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Number)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Number)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Address2)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Address2)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.AddressComplement)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.AddressComplement)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.City)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.City)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.State)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.State)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Cep)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Cep)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Country)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Country)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail-group-data mb-2">
+            <span class="detail-group-desc">Outros</span>
+            <div class="d-flex justify-content-between mt-2">
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Obs)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Obs)
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h4 class="detail-name">@Html.DisplayFor(model => model.CustomerName) ► @Html.DisplayFor(model => model.TypeCustomer)</h4>
+        <div class="detail-group-data mb-2">
+            <span class="detail-group-desc">Dados pessoais</span>
+            <div class="d-flex justify-content-between mt-2">
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Cpf):
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Cpf)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Rg)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Rg)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.BirthDate)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.BirthDate)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail-group-data mb-2">
+            <span class="detail-group-desc">Dados de contato</span>
+            <div class="d-flex justify-content-between mt-2">
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Phone)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Cellphone)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Cellphone)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Email)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail-group-data mb-2">
+            <span class="detail-group-desc">Dados de endereço</span>
+            <div class="d-flex justify-content-between mt-2">
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Address)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Address)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Number)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Number)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Address2)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Address2)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.AddressComplement)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.AddressComplement)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.City)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.City)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.State)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.State)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Cep)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Cep)
+                    </div>
+                </div>
+                <div class="detail-group d-flex flex-column">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Country)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Country)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail-group-data mb-2">
+            <span class="detail-group-desc">Outros</span>
+            <div class="detail-group d-flex flex-column mt-2">
+                <div class="d-flex justify-content-between">
+                    <div class="detail-data-label">
+                        @Html.DisplayNameFor(model => model.Obs)
+                    </div>
+                    <div class="detail-data">
+                        @Html.DisplayFor(model => model.Obs)
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+<div class="detail-buttons d-flex justify-content-end">
+    <form asp-action="Index" method="get">
+        <button type="submit" class="btn-details">
+            <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
+        </button>
+    </form>
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="get">
+        <button type="submit" class="btn-details">
+            <img src="~/icon/edit.svg" class="btn-details-icon" /> Editar Cliente
+        </button>
+    </form>
 </div>

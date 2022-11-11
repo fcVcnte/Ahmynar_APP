@@ -10,5 +10,6 @@ namespace Ahmynar_Application.Contracts.Persistence
 {
     public interface IBudgetRepository : IGenericRepository<Budget>
     {
+        Task CancelBudgetAsync(Budget budget);
     }
 }

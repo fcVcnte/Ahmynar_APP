@@ -8,6 +8,7 @@ namespace Ahmynar_Application.DTOs.Sale
 {
     public interface ISaleBudgetDto : ISaleDto
     {
+        public Ahmynar_Domain.Enums.TypeSale TypeSale { get; set; }
         public int BudgetId { get; set; }
     }
 }

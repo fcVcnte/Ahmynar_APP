@@ -1,0 +1,60 @@
+﻿@model Ahmynar_MVC.Models.CreateSaleVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CreateSaleVM</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TypeSale" class="control-label"></label>
+                <input asp-for="TypeSale" class="form-control" />
+                <span asp-validation-for="TypeSale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentSale" class="control-label"></label>
+                <input asp-for="PaymentSale" class="form-control" />
+                <span asp-validation-for="PaymentSale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstallmentPayment" class="control-label"></label>
+                <input asp-for="InstallmentPayment" class="form-control" />
+                <span asp-validation-for="InstallmentPayment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalSale" class="control-label"></label>
+                <input asp-for="TotalSale" class="form-control" />
+                <span asp-validation-for="TotalSale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Obs" class="control-label"></label>
+                <input asp-for="Obs" class="form-control" />
+                <span asp-validation-for="Obs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BudgetId" class="control-label"></label>
+                <select asp-for="BudgetId" asp-items="Model.Budgets" class="form-control">
+                    <option></option>
+                </select>
+                <span asp-validation-for="BudgetId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Ahmynar_MVC.Models.EquipamentVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeEquipament)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Acessories)
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr onclick="location.href = '@Url.Action("Details", new { id=item.Id })'">
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeEquipament)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acessories)
+            </td>
+            <td>
+                @(item.Customer.TradeName == null ? item.Customer.CustomerName : item.Customer.TradeName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                <form asp-action="Delete" asp-route-id=@item.Id method="post">
+                    <button type="submit" class="btn btn-link" onclick="return confirm('Deseja remover esse item?')">Remover</button>
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
