@@ -14,6 +14,10 @@
         $(this).mask('(00) 00000-0000', { reverse: true });
     });
 
+    $(".phone-num").each(function () {
+        $(this).mask('(00) 0000-0000', { reverse: true });
+    });
+
     $(".cep-num").each(function () {
         $(this).mask('00000-000', { reverse: true });
     });

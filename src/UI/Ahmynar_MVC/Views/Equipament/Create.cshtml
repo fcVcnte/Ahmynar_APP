@@ -1,60 +1,108 @@
 ﻿@model Ahmynar_MVC.Models.CreateEquipamentVM
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar Equipamento";
 }
 
-<h1>Create</h1>
+<h1 class="page-title">Novo Equipamento</h1>
 
-<h4>CreateEquipamentVM</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TypeEquipament" class="control-label"></label>
-                <input asp-for="TypeEquipament" class="form-control" />
-                <span asp-validation-for="TypeEquipament" class="text-danger"></span>
+<div class="create-page">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="d-flex justify-content-between radio-div mb-3">
+            @foreach (var te in System.Enum.GetValues(typeof(Ahmynar_Domain.Enums.TypeEquipament)))
+            {
+                <div class="d-flex flex-row-reverse align-items-md-center">
+                    <label asp-for="TypeEquipament" class="form-check-label radio-label">@(te.ToString() == "Computer" ? "Computador" : "Impressora")</label>
+                    <input asp-for="TypeEquipament" type="radio" value="@((int)te)" class="form-check-input radio-data" id="@te.ToString()" checked="checked" />
+                    <span asp-validation-for="TypeEquipament" class="text-danger"></span>
+                </div>
+            }
+        </div>
+        <div class="d-flex flex-column mb-2 group-data">
+            <span class="group-desc">Dados técnicos</span>
+            <div class="d-flex justify-content-between ">
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="Description" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="Description" class="input-data" />
+                    </div>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="Specs" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="Specs" class="input-data" />
+                    </div>
+                    <span asp-validation-for="Specs" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="Acessories" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="Acessories" class="input-data" />
+                    </div>
+                    <span asp-validation-for="Acessories" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column selective-row">
+                    <div class="group-row-label">
+                        <label asp-for="CustomerId" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <select asp-for="CustomerId" asp-items="Model.Customers" class="selectize-data">
+                        </select>
+                    </div>
+                    <span asp-validation-for="CustomerId" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="d-flex flex-column mb-2 group-data">
+            <span class="group-desc">Outros</span>
+            <div class="d-flex justify-content-between  obs-input">
+                <div class="group-row d-flex flex-column w-100">
+                    <div class="group-row-label">
+                        <label asp-for="Obs" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <textarea asp-for="Obs" class="input-data textarea-data w-100"></textarea>
+                    </div>
+                    <span asp-validation-for="Obs" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Specs" class="control-label"></label>
-                <input asp-for="Specs" class="form-control" />
-                <span asp-validation-for="Specs" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Acessories" class="control-label"></label>
-                <input asp-for="Acessories" class="form-control" />
-                <span asp-validation-for="Acessories" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Obs" class="control-label"></label>
-                <input asp-for="Obs" class="form-control" />
-                <span asp-validation-for="Obs" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" asp-items="Model.Customers" class="form-control">
-                    <option></option>
-                </select>
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+        </div>
+        <div class="footer-buttoms d-flex justify-content-end mt-4">
+            <button id="btnBack" class="btn-details">
+                <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
+            </button>
+            <button type="submit" value="Create" class="btn-details">
+                <img src="~/icon/register.svg" class="btn-details-icon" /> Registrar
+            </button>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+<script>
+    $(".selectize-data").selectize({
+        create: false,
+        sortField: "text",
+        placeholder: "Selecione um cliente"
+    });
+
+    $("#btnBack").click(function () {
+        $("span").each(function () {
+            $(this).remove();
+        });
+        location.href = '@(Html.Raw(Url.Action("Index")))';
+    });
+</script>
 }

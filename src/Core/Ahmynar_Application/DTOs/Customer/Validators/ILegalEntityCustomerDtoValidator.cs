@@ -34,12 +34,12 @@ namespace Ahmynar_Application.DTOs.Customer.Validators
             RuleFor(p => p.IE)
                 .NotEmpty().WithMessage("Inscrição Estadual é obrigatória.")
                 .NotNull()
-                .MinimumLength(10).WithMessage("Inscrição Estadual inválida")
-                .MaximumLength(10).WithMessage("Inscrição Estadual não pode exceder 10 caracteres.");
+                .MinimumLength(8).WithMessage("Inscrição Estadual não pode ser menor que 8 caracteres")
+                .MaximumLength(14).WithMessage("Inscrição Estadual não pode exceder 14 caracteres.");
 
             RuleFor(p => p.IM)
-                .MinimumLength(7).WithMessage("Inscrição Estadual inválida")
-                .MaximumLength(8).WithMessage("Inscrição Estadual não pode exceder 10 caracteres.");
+                .MinimumLength(11).WithMessage("Inscrição Estadual não pode ser menor que 11 caracteres")
+                .MaximumLength(15).WithMessage("Inscrição Estadual não pode exceder 15 caracteres.");
 
             RuleFor(p => p.Phone)
                 .MinimumLength(10).WithMessage("{PropertyName} inválido")

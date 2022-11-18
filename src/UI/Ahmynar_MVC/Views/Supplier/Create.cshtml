@@ -1,108 +1,204 @@
 ﻿@model Ahmynar_MVC.Models.CreateSupplierVM
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar Fornecedor";
 }
 
-<h1>Create</h1>
+<h1 class="page-title">Novo Fornecedor</h1>
 
-<h4>CreateSupplierVM</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CompanyName" class="control-label"></label>
-                <input asp-for="CompanyName" class="form-control" />
-                <span asp-validation-for="CompanyName" class="text-danger"></span>
+<div class="create-page">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="d-flex flex-column mb-2 group-data group-data-legal-entity">
+            <span class="group-desc">Dados pessoais</span>
+            <div class="d-flex justify-content-between ">
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="CompanyName" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="CompanyName" id="companyName" class="input-data" />
+                    </div>
+                    <span asp-validation-for="CompanyName" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="TradeName" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="TradeName" id="tradeName" class="input-data" />
+                    </div>
+                    <span asp-validation-for="TradeName" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="Cnpj" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="Cnpj" id="cnpjNumber" class="input-data" />
+                    </div>
+                    <span asp-validation-for="Cnpj" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="IE" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="IE" id="ieNumber" class="input-data" />
+                    </div>
+                    <span asp-validation-for="IE" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="TradeName" class="control-label"></label>
-                <input asp-for="TradeName" class="form-control" />
-                <span asp-validation-for="TradeName" class="text-danger"></span>
+        </div>
+        <div class="d-flex flex-column mb-2 group-data">
+            <span class="group-desc">Dados de contato</span>
+            <div class="d-flex justify-content-between ">
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="Phone" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="Phone" class="input-data" />
+                    </div>
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="Email" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="Email" class="input-data" />
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="Website" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="Website" class="input-data" />
+                    </div>
+                    <span asp-validation-for="Website" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Cnpj" class="control-label"></label>
-                <input asp-for="Cnpj" class="form-control" />
-                <span asp-validation-for="Cnpj" class="text-danger"></span>
+        </div>
+        <div class="d-flex flex-column mb-2 group-data">
+            <span class="group-desc">Dados de contato</span>
+            <div class="d-flex flex-column ">
+                <div class="d-flex justify-content-between">
+                    <div class="group-row d-flex flex-column mb-2">
+                        <div class="group-row-label">
+                            <label asp-for="Address" class="control-label"></label>
+                        </div>
+                        <div class="group-row-data">
+                            <input asp-for="Address" class="input-data" />
+                        </div>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="group-row d-flex flex-column">
+                        <div class="group-row-label">
+                            <label asp-for="Number" class="control-label"></label>
+                        </div>
+                        <div class="group-row-data">
+                            <input asp-for="Number" class="input-data" />
+                        </div>
+                        <span asp-validation-for="Number" class="text-danger"></span>
+                    </div>
+                    <div class="group-row d-flex flex-column">
+                        <div class="group-row-label">
+                            <label asp-for="Address2" class="control-label"></label>
+                        </div>
+                        <div class="group-row-data">
+                            <input asp-for="Address2" class="input-data" />
+                        </div>
+                        <span asp-validation-for="Address2" class="text-danger"></span>
+                    </div>
+                    <div class="group-row d-flex flex-column">
+                        <div class="group-row-label">
+                            <label asp-for="AddressComplement" class="control-label"></label>
+                        </div>
+                        <div class="group-row-data">
+                            <input asp-for="AddressComplement" class="input-data" />
+                        </div>
+                        <span asp-validation-for="AddressComplement" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="group-row d-flex flex-column">
+                        <div class="group-row-label">
+                            <label asp-for="City" class="control-label"></label>
+                        </div>
+                        <div class="group-row-data">
+                            <input asp-for="City" class="input-data" />
+                        </div>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="group-row d-flex flex-column">
+                        <div class="group-row-label">
+                            <label asp-for="State" class="control-label"></label>
+                        </div>
+                        <div class="group-row-data">
+                            <input asp-for="State" class="input-data" />
+                        </div>
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+                    <div class="group-row d-flex flex-column">
+                        <div class="group-row-label">
+                            <label asp-for="Cep" class="control-label"></label>
+                        </div>
+                        <div class="group-row-data">
+                            <input asp-for="Cep" class="input-data" />
+                        </div>
+                        <span asp-validation-for="Cep" class="text-danger"></span>
+                    </div>
+                    <div class="group-row d-flex flex-column">
+                        <div class="group-row-label">
+                            <label asp-for="Country" class="control-label"></label>
+                        </div>
+                        <div class="group-row-data">
+                            <input asp-for="Country" class="input-data" />
+                        </div>
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="IE" class="control-label"></label>
-                <input asp-for="IE" class="form-control" />
-                <span asp-validation-for="IE" class="text-danger"></span>
+        </div>
+        <div class="d-flex flex-column mb-2 group-data">
+            <span class="group-desc">Outros</span>
+            <div class="d-flex justify-content-between  obs-input">
+                <div class="group-row d-flex flex-column w-100">
+                    <div class="group-row-label">
+                        <label asp-for="Obs" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <textarea asp-for="Obs" class="input-data textarea-data w-100"></textarea>
+                    </div>
+                    <span asp-validation-for="Obs" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Number" class="control-label"></label>
-                <input asp-for="Number" class="form-control" />
-                <span asp-validation-for="Number" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address2" class="control-label"></label>
-                <input asp-for="Address2" class="form-control" />
-                <span asp-validation-for="Address2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AddressComplement" class="control-label"></label>
-                <input asp-for="AddressComplement" class="form-control" />
-                <span asp-validation-for="AddressComplement" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="State" class="control-label"></label>
-                <input asp-for="State" class="form-control" />
-                <span asp-validation-for="State" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cep" class="control-label"></label>
-                <input asp-for="Cep" class="form-control" />
-                <span asp-validation-for="Cep" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input asp-for="Country" class="form-control" />
-                <span asp-validation-for="Country" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Website" class="control-label"></label>
-                <input asp-for="Website" class="form-control" />
-                <span asp-validation-for="Website" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Obs" class="control-label"></label>
-                <input asp-for="Obs" class="form-control" />
-                <span asp-validation-for="Obs" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+        </div>
+        <div class="footer-buttoms d-flex justify-content-end mt-4">
+            <button id="btnBack" class="btn-details">
+                <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
+            </button>
+            <button type="submit" value="Create" class="btn-details">
+                <img src="~/icon/register.svg" class="btn-details-icon" /> Registrar
+            </button>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $("#btnBack").click(function () {
+            $("span").each(function () {
+                $(this).remove();
+            });
+            location.href = '@(Html.Raw(Url.Action("Index")))';
+        });
+    </script>
 }

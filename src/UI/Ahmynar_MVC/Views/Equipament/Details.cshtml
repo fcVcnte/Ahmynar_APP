@@ -1,54 +1,57 @@
 ﻿@model Ahmynar_MVC.Models.EquipamentVM
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Equipamento";
 }
 
-<h1>Details</h1>
+<h1 class="page-title">Detalhes do Equipamento</h1>
 
-<div>
-    <h4>EquipamentVM</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TypeEquipament)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TypeEquipament)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Specs)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Specs)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Acessories)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Acessories)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Obs)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Obs)
-        </dd>
-        <dt class = "col-sm-2">
-            Cliente
-        </dt>
-        <dd class = "col-sm-10">
-            @(Model.Customer.TradeName == null ? Model.Customer.CustomerName : Model.Customer.TradeName)
-        </dd>
-    </dl>
+<div class="detail-page d-flex flex-column mb-4">
+    <h4 class="detail-name">@Html.DisplayFor(model => model.Description) ► @Html.DisplayFor(model => model.TypeEquipament)</h4>
+    <div class="group-data mb-2">
+        <span class="group-desc">Dados técnicos</span>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.Specs)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.Specs)
+                </div>
+            </div>
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.Acessories)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.Acessories)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="group-data mb-2">
+        <span class="group-desc">Outros</span>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.Obs)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.Obs)
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+<div class="footer-buttoms d-flex justify-content-end">
+    <form asp-action="Index" method="get">
+        <button type="submit" class="btn-details">
+            <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
+        </button>
+    </form>
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="get">
+        <button type="submit" class="btn-details">
+            <img src="~/icon/edit.svg" class="btn-details-icon" /> Editar Fornecedor
+        </button>
+    </form>
 </div>
