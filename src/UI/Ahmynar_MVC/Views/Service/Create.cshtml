@@ -1,43 +1,73 @@
 ﻿@model Ahmynar_MVC.Models.CreateServiceVM
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar Serviço";
 }
 
-<h1>Create</h1>
+<h1 class="page-title">Novo Serviço</h1>
 
-<h4>CreateServiceVM</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+<div class="create-page">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="d-flex flex-column mb-2 group-data">
+            <span class="group-desc">Dados de venda</span>
+            <div class="d-flex justify-content-between ">
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="Description" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="Description" id="companyName" class="input-data" />
+                    </div>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="SalePrice" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="SalePrice" id="tradeName" class="input-data" />
+                    </div>
+                    <span asp-validation-for="SalePrice" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="SalePrice" class="control-label"></label>
-                <input asp-for="SalePrice" class="form-control" />
-                <span asp-validation-for="SalePrice" class="text-danger"></span>
+        </div>
+        <div class="d-flex flex-column mb-2 group-data">
+            <span class="group-desc">Outros</span>
+            <div class="d-flex justify-content-between  obs-input">
+                <div class="group-row d-flex flex-column w-100">
+                    <div class="group-row-label">
+                        <label asp-for="Obs" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <textarea asp-for="Obs" class="input-data textarea-data w-100"></textarea>
+                    </div>
+                    <span asp-validation-for="Obs" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Obs" class="control-label"></label>
-                <input asp-for="Obs" class="form-control" />
-                <span asp-validation-for="Obs" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+        </div>
+        <div class="footer-buttoms d-flex justify-content-end mt-4">
+            <button id="btnBack" class="btn-details">
+                <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
+            </button>
+            <button type="submit" value="Create" class="btn-details">
+                <img src="~/icon/register.svg" class="btn-details-icon" /> Registrar
+            </button>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $("#btnBack").click(function () {
+            $("span").each(function () {
+                $(this).remove();
+            });
+            location.href = '@(Html.Raw(Url.Action("Index")))';
+        });
+    </script>
 }

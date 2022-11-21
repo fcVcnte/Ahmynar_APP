@@ -246,6 +246,23 @@ body {
     margin-right: 0.5rem;
 }
 
+.group-radio-label {
+    font: var(--font-lato);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--color-white-primary);
+    margin-left: 1rem;
+}
+
+.form-check-input {
+    background-color: var(--color-white-primary) !important;
+}
+
+    .form-check-input:checked {
+        background-color: var(--color-purple-secundary) !important;
+        border-color: var(--color-purple-secundary) !important;
+    }
+
 .input-data {
     font: var(--font-lato) !important;
     font-weight: 400 !important;
@@ -278,13 +295,13 @@ body {
     border-radius: 8px !important;
     border: 2px solid var(--color-black-terciary) !important;
     text-transform: uppercase !important;
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
+    -webkit-transition: all 0.30s ease-in-out !important;
+    -moz-transition: all 0.30s ease-in-out !important;
+    -ms-transition: all 0.30s ease-in-out !important;
+    -o-transition: all 0.30s ease-in-out !important;
 }
 
-    .selectize-input:focus {
+    .selectize-input.focus {
         outline: 0 !important;
         box-shadow: 0 0 5px rgba(67, 47, 101, 1) !important;
         border: 1px solid rgba(67, 47, 101, 1) !important;
@@ -313,6 +330,21 @@ body {
 
 .selectize-control.single .selectize-input.dropdown-active:after {
     border-color: transparent transparent var(--color-purple-primary) transparent !important;
+}
+
+.selectize-control.multi .selectize-input > div.active {
+    background-color: var(--color-purple-primary) !important;
+    color: var(--color-white-primary) !important;
+}
+
+.selectize-control.multi .selectize-input > div {
+    background: var(--color-black-terciary) !important;
+    color: var(--color-white-primary) !important;
+}
+
+.selectize-control.plugin-remove_button .item .remove {
+    color: var(--color-white-primary) !important;
+    border-left: 0 !important;
 }
 
 .obs-input {

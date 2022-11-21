@@ -1,66 +1,86 @@
 ﻿@model Ahmynar_MVC.Models.ProductVM
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Produto";
 }
 
-<h1>Details</h1>
+<h1 class="page-title">Detalhes do Produto</h1>
 
-<div>
-    <h4>ProductVM</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GroupProduct)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GroupProduct)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PurchasePrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PurchasePrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Unit)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Unit)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SalePrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SalePrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Obs)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Obs)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SupplierId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Supplier.TradeName)
-        </dd>
-    </dl>
+<div class="detail-page d-flex flex-column mb-4">
+    <h4 class="detail-name">@Html.DisplayFor(model => model.Description) ► @Html.DisplayFor(model => model.GroupProduct)</h4>
+    <div class="group-data mb-2">
+        <span class="group-desc">Dados de compra</span>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.Unit)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.Unit)
+                </div>
+            </div>
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.PurchasePrice)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.PurchasePrice)
+                </div>
+            </div>
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.Supplier.TradeName)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.Supplier.TradeName)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="group-data mb-2">
+        <span class="group-desc">Dados de venda</span>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.Quantity)
+                </div>
+            </div>
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.SalePrice)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.SalePrice)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="group-data mb-2">
+        <span class="group-desc">Outros</span>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.Obs)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.Obs)
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+<div class="footer-buttoms d-flex justify-content-end">
+    <form asp-action="Index" method="get">
+        <button type="submit" class="btn-details">
+            <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
+        </button>
+    </form>
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="get">
+        <button type="submit" class="btn-details">
+            <img src="~/icon/edit.svg" class="btn-details-icon" /> Editar Produto
+        </button>
+    </form>
 </div>

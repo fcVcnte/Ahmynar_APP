@@ -1,84 +1,176 @@
 ﻿@model Ahmynar_MVC.Models.CreateBudgetVM
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar Orçamento";
 }
 
-<h1>Create</h1>
+<h1 class="page-title">Novo Orçamento</h1>
 
-<h4>CreateBudgetVM</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Number" class="control-label"></label>
-                <input asp-for="Number" class="form-control" />
-                <span asp-validation-for="Number" class="text-danger"></span>
+<div class="create-page">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="d-flex justify-content-between radio-div mb-3">
+            @foreach (var s in System.Enum.GetValues(typeof(Ahmynar_Domain.Enums.StatusDescription)))
+            {
+                <div class="d-flex flex-row-reverse align-items-md-center">
+                    <label asp-for="Status" class="form-check-label radio-label">
+                        @(s.ToString() == "Open" ? "Aberto" : s.ToString() == "InQueue" ? "Na fila" : s.ToString() == "InProcess" ? "Em processo" : s.ToString() == "Finished" ? "Finalizado" : "Cancelado")
+                    </label>
+                    <input asp-for="Status" type="radio" value="@((int)s)" class="form-check-input radio-data" id="@s.ToString()" checked="checked" />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+            }
+        </div>
+        <div class="d-flex flex-column mb-2 group-data">
+            <span class="group-desc">Dados dos produtos</span>
+            <div class="d-flex justify-content-between ">
+                <div class="group-row d-flex flex-column selective-row">
+                    <div class="group-row-label">
+                        <label asp-for="ProductIds" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <select asp-for="ProductIds" asp-items="Model.ProductsList" id="productSelectize" class="selectize-data" multiple>
+                        </select>
+                    </div>
+                    <span asp-validation-for="ProductIds" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="TotalProducts" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="TotalProducts" class="input-data" />
+                    </div>
+                    <span asp-validation-for="TotalProducts" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="d-flex flex-column mb-2 group-data">
+            <span class="group-desc">Dados dos serviços</span>
+            <div class="d-flex justify-content-between ">
+                <div class="group-row d-flex flex-column selective-row">
+                    <div class="group-row-label">
+                        <label asp-for="ServiceIds" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <select asp-for="ServiceIds" asp-items="Model.ServicesList" id="serviceSelectize" class="selectize-data" multiple>
+                        </select>
+                    </div>
+                    <span asp-validation-for="ServiceIds" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="TotalServices" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="TotalServices" class="input-data" />
+                    </div>
+                    <span asp-validation-for="TotalServices" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ExpireDate" class="control-label"></label>
-                <input asp-for="ExpireDate" class="form-control" />
-                <span asp-validation-for="ExpireDate" class="text-danger"></span>
+        </div>
+        <div class="d-flex flex-column mb-2 group-data">
+            <span class="group-desc">Dados do orçamento</span>
+            <div class="d-flex justify-content-between ">
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="Number" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="Number" class="input-data" />
+                    </div>
+                    <span asp-validation-for="Number" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column selective-row">
+                    <div class="group-row-label">
+                        <label asp-for="CustomerId" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <select asp-for="CustomerId" asp-items="Model.Customers" id="customerSelectize" class="selectize-data">
+                        </select>
+                    </div>
+                    <span asp-validation-for="CustomerId" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="ExpireDate" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="ExpireDate" class="input-data" />
+                    </div>
+                    <span asp-validation-for="ExpireDate" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
+                        <label asp-for="Total" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="Total" class="input-data" />
+                    </div>
+                    <span asp-validation-for="Total" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="TotalServices" class="control-label"></label>
-                <input asp-for="TotalServices" class="form-control" />
-                <span asp-validation-for="TotalServices" class="text-danger"></span>
+        </div>
+        <div class="d-flex flex-column mb-2 group-data">
+            <span class="group-desc">Outros</span>
+            <div class="d-flex justify-content-between  obs-input">
+                <div class="group-row d-flex flex-column w-100">
+                    <div class="group-row-label">
+                        <label asp-for="Obs" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <textarea asp-for="Obs" class="input-data textarea-data w-100"></textarea>
+                    </div>
+                    <span asp-validation-for="Obs" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="TotalProducts" class="control-label"></label>
-                <input asp-for="TotalProducts" class="form-control" />
-                <span asp-validation-for="TotalProducts" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Total" class="control-label"></label>
-                <input asp-for="Total" class="form-control" />
-                <span asp-validation-for="Total" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Obs" class="control-label"></label>
-                <input asp-for="Obs" class="form-control" />
-                <span asp-validation-for="Obs" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" asp-items="Model.Customers" class="form-control">
-                    <option></option>
-                </select>
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductIds" class="control-label"></label>
-                <select asp-for="ProductIds" asp-items="Model.ProductsList" class="form-control" multiple>
-                    <option></option>
-                </select>
-                <span asp-validation-for="ProductIds" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ServiceIds" class="control-label"></label>
-                <select asp-for="ServiceIds" asp-items="Model.ServicesList" class="form-control" multiple>
-                    <option></option>
-                </select>
-                <span asp-validation-for="ServiceIds" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+        </div>
+        <div class="footer-buttoms d-flex justify-content-end mt-4">
+            <button id="btnBack" class="btn-details">
+                <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
+            </button>
+            <button type="submit" value="Create" class="btn-details">
+                <img src="~/icon/register.svg" class="btn-details-icon" /> Registrar
+            </button>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+<script>
+      $("#productSelectize").selectize({
+          plugins: ["remove_button"],
+          delimiter: ",",
+          persist: false,
+          create: false,
+          sortField: "text",
+          placeholder: "Selecione um produto"
+      });
+
+      $("#serviceSelectize").selectize({
+          plugins: ["remove_button"],
+          delimiter: ",",
+          persist: false,
+          create: false,
+          sortField: "text",
+          placeholder: "Selecione um serviço"
+      });
+
+      $("#customerSelectize").selectize({
+          create: false,
+          sortField: "text",
+          placeholder: "Selecione um cliente"
+      });
+
+      $("#btnBack").click(function () {
+          $("span").each(function () {
+              $(this).remove();
+          });
+          location.href = '@(Html.Raw(Url.Action("Index")))';
+      });
+</script>
 }

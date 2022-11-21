@@ -1,19 +1,33 @@
 ﻿@model IEnumerable<Ahmynar_MVC.Models.SaleVM>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista de Vendas";
 }
 
-<h1>Index</h1>
+<div class="index-header d-flex justify-content-between align-items-baseline">
+    <div class="d-flex flex-column">
+        <h1 class="index-title">Lista de Vendas</h1>
+        <p class="index-count"><span id="qttRows"></span> vendas</p>
+    </div>
+    <form asp-action="Create" method="get">
+        <button type="submit" class="btn-register">
+            <img src="~/icon/add.svg" class="btn-register-icon" /> Registrar Venda
+        </button>
+    </form>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<div class="index-search d-flex justify-content-center">
+    <input class="input-search" name="filter" type="text" />
+</div>
+
+<table class="index-table">
+    <thead class="table-head">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.TypeSale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BudgetId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PaymentSale)
@@ -24,16 +38,17 @@
             <th>
                 @Html.DisplayNameFor(model => model.TotalSale)
             </th>
-            <th>
-                Número do Orçamento
-            </th>
+            <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="table-body">
 @foreach (var item in Model) {
         <tr onclick="location.href = '@Url.Action("Details", new { id=item.Id })'">
             <td>
                 @Html.DisplayFor(modelItem => item.TypeSale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Budget.Number)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentSale)
@@ -44,8 +59,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TotalSale)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Budget.Number)
+            <td class="d-flex justify-content-center align-items-end">
+                <form asp-action="Edit" asp-route-id=@item.Id method="get">
+                    <button type="submit" class="btn btn-link td-button">
+                        <img src="~/icon/edit.svg" class="td-icon" />
+                    </button>
+                </form>
+                <form asp-action="Delete" asp-route-id=@item.Id method="post">
+                    <button type="submit" class="btn btn-link td-button" onclick="return confirm('Deseja remover esse item?')">
+                        <img src="~/icon/delete.svg" class="td-icon" />
+                    </button>
+                </form>
             </td>
         </tr>
 }

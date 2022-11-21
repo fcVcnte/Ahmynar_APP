@@ -1,65 +1,102 @@
 ﻿@model Ahmynar_MVC.Models.BudgetVM
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Orçamento";
 }
 
-<h1>Details</h1>
+<h1 class="page-title">Detalhes do Orçamento</h1>
 
-<div>
-    <h4>BudgetVM</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Number)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Number)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ExpireDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ExpireDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalServices)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalServices)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalProducts)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalProducts)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Total)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Obs)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Obs)
-        </dd>
-        <dt class = "col-sm-2">
-            Cliente
-        </dt>
-        <dd class = "col-sm-10">
-            @(Model.Customer.TradeName == null ? Model.Customer.CustomerName : Model.Customer.TradeName)
-        </dd>
-    </dl>
+<div class="detail-page d-flex flex-column mb-4">
+    <h4 class="detail-name">@Html.DisplayFor(model => model.Number) ► @Html.DisplayFor(model => model.Status)</h4>
+    <div class="group-data mb-2">
+        <span class="group-desc">Dados dos produtos</span>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.Products)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.Products)
+                </div>
+            </div>
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.TotalProducts)
+                </div>
+                <div class="group-row-data cpf-cnpj">
+                    @Html.DisplayFor(model => model.TotalProducts)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="group-data mb-2">
+        <span class="group-desc">Dados dos serviços</span>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.Services)
+                </div>
+                <div class="group-row-data phone-num">
+                    @Html.DisplayFor(model => model.Services)
+                </div>
+            </div>
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.TotalServices)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.TotalServices)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="group-data mb-2">
+        <span class="group-desc">Dados do orçamento</span>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.ExpireDate)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.ExpireDate)
+                </div>
+            </div>
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.ExpireDate)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.ExpireDate)
+                </div>
+            </div>
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.CustomerId)
+                </div>
+                <div class="group-row-data">
+                    @(Model.Customer.TradeName == null ? Model.Customer.CustomerName : Model.Customer.TradeName)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="group-data mb-2">
+        <span class="group-desc">Outros</span>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.Obs)
+                </div>
+                <div class="group-row-data">
+                    @Html.DisplayFor(model => model.Obs)
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="footer-buttoms d-flex justify-content-end">
+    <form asp-action="Index" method="get">
+        <button type="submit" class="btn-details">
+            <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
+        </button>
+    </form>
 </div>
