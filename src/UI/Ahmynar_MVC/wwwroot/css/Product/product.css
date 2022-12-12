@@ -1,0 +1,36 @@
+﻿.modal-content {
+    background-color: #181818 !important;
+}
+
+.modal-header, .modal-footer {
+    border-color: rgba(53, 53, 53, 0.4);
+}
+
+.modal-title {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 26px;
+    font-weight: 500;
+    color: #E1E1E1;
+}
+
+.modal-body {
+    padding-top: 1.5rem !important;
+}
+
+.btn-modal {
+    font: var(--font-lato);
+    font-size: 16px;
+    font-weight: 400;
+    background-color: var(--color-purple-primary);
+    text-decoration: none;
+    color: var(--color-white-primary);
+    padding: 0.5rem 1rem;
+    border: 0;
+    border-radius: 6px;
+    margin-left: 1rem;
+    box-shadow: inset 0px -4px 20px -3px rgb(33 33 33 / 50%);
+}
+
+.radio-div {
+    width: 65% !important;
+}

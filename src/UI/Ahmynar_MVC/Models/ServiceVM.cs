@@ -19,5 +19,10 @@ namespace Ahmynar_MVC.Models
 
         [Display(Name = "Observações")]
         public string? Obs { get; set; }
+
+        public string DescSale
+        {
+            get { return Description + " | [R$" + SalePrice + "] "; }
+        }
     }
 }

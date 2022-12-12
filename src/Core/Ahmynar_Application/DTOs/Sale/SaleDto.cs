@@ -17,6 +17,7 @@ namespace Ahmynar_Application.DTOs.Sale
         public float TotalSale { get; set; }
         public string? Obs { get; set; }
         public int? BudgetId { get; set; }
+        public DateTime DateCreated { get; set; }
 
         public BudgetDto Budget { get; set; }
         public List<ProductDto> Products { get; set; }

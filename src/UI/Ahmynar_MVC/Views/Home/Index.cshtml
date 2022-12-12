@@ -1,8 +1,162 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Ahmynar_MVC.Models.DashboardVM
+
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<head>
+    <link rel="stylesheet" href="~/css/Home/dashboard.css" asp-append-version="true" />
+</head>
+
+<div class="d-flex flex-column justify-content-between div-dashboard">
+    <h1 class="div-title">Dashboard</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm div-h-items">
+                <div class="d-flex justify-content-start div-h-items-title">Orçamentos</div>
+                <div class="d-flex justify-content-center div-h-items-content">@Model.OpenBudgets</div>
+                <div class="d-flex justify-content-center div-h-items-footer">aberto(s)</div>
+            </div>
+            <div class="col-sm div-h-items">
+                <div class="d-flex justify-content-start div-h-items-title">Ordens de serviço</div>
+                <div class="d-flex justify-content-center div-h-items-content">@Model.OpenServiceOrders</div>
+                <div class="d-flex justify-content-center div-h-items-footer">aberto(s)</div>
+            </div>
+            <div class="col-sm div-h-items">
+                <div class="d-flex justify-content-start div-h-items-title">Vendas</div>
+                <div class="d-flex justify-content-center div-h-items-content">@Model.SellBudgets</div>
+                <div class="d-flex justify-content-center div-h-items-footer">orçamento(s)</div>
+            </div>
+            <div class="col-sm div-h-items">
+                <div class="d-flex justify-content-start div-h-items-title">Vendas</div>
+                <div class="d-flex justify-content-center div-h-items-content">@Model.SellProducts</div>
+                <div class="d-flex justify-content-center div-h-items-footer">produto(s)</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 div-h-items">
+                <canvas id="budgetChart" class="w-100"></canvas>
+            </div>
+            <div class="col-sm-4 div-b-items">
+                <div class="d-flex justify-content-between w-100 mb-3">
+                    <form asp-action="Customer" class="w-100" method="get">
+                        <button type="submit" class="d-flex justify-content-between align-items-center btn-shortcut w-100">
+                            Registrar cliente<img src="~/icon/chevron-right.svg" class="btn-details-icon" />
+                        </button>
+                    </form>
+                </div>
+                <div class="d-flex justify-content-between w-100 mb-3">
+                    <form asp-action="Budget" class="w-100" method="get">
+                        <button type="submit" class="d-flex justify-content-between align-items-center btn-shortcut w-100">
+                            Registrar orçamento<img src="~/icon/chevron-right.svg" class="btn-details-icon" />
+                        </button>
+                    </form>
+                </div>
+                <div class="d-flex justify-content-between w-100 mb-3">
+                    <form asp-action="ServiceOrder" class="w-100" method="get">
+                        <button type="submit" class="d-flex justify-content-between align-items-center btn-shortcut w-100">
+                            Registrar OS<img src="~/icon/chevron-right.svg" class="btn-details-icon" />
+                        </button>
+                    </form>
+                </div>
+                <div class="d-flex justify-content-between w-100">
+                    <form asp-action="Sale" class="w-100" method="get">
+                        <button type="submit" class="d-flex justify-content-between align-items-center btn-shortcut w-100">
+                            Registrar venda<img src="~/icon/chevron-right.svg" class="btn-details-icon" />
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+<script src="~/lib/Chart.js/chart.min.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        let arrayGraphs = [];
+
+        @foreach (var graph in Model.Graphs) {
+            @:arrayGraphs.push({ month: "@graph.Month", year: "@graph.Year", totalBudgets: "@graph.TotalBudgets", totalSale: "@graph.TotalSale", totalServiceOrder: "@graph.TotalServiceOrder" });
+        }
+
+        let arrayMonths = arrayGraphs.map(graph => graph.month.toString());
+        let arrayBudgets = arrayGraphs.map(graph => parseInt(graph.totalBudgets));
+        let arraySale = arrayGraphs.map(graph => parseInt(graph.totalSale));
+        let arrayServiceOrder = arrayGraphs.map(graph => parseInt(graph.totalServiceOrder));
+
+        var ctx = document.getElementById('budgetChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: arrayMonths,
+                datasets: [
+                    {
+                        data: arrayBudgets,
+                        label: "Orçamento(s)",
+                        borderColor: "#432F65",
+                        backgroundColor: "#432F65",
+                        fill: false,
+                    }, 
+                    {
+                        data: arrayServiceOrder,
+                        label: "OS",
+                        borderColor: "#664B93",
+                        backgroundColor: "#664B93",
+                        fill: false,
+                    }, 
+                    {
+                        data: arraySale,
+                        label: "Venda(s)",
+                        borderColor: "#897aa3",
+                        backgroundColor:"#897aa3",
+                        fill: false,
+                    }
+                ]
+            },
+            options: {
+                plugins: { 
+                    legend: {
+                        labels: {
+                            color: "#F1F1F1", 
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Dados dos últimos 6 meses',
+                },
+                scales: {
+                    y: {  
+                        ticks: {
+                            color: "#C1C1C1",
+                            font: {
+                                size: 14, 
+                            },
+                            stepSize: 1,
+                            beginAtZero: true
+                        }
+                    },
+                    x: { 
+                        ticks: {
+                            color: "#C1C1C1", 
+                            font: {
+                                size: 14 
+                            },
+                            stepSize: 1,
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }
+        });
+    }
+</script>
+}

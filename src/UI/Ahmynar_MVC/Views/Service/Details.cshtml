@@ -4,11 +4,15 @@
     ViewData["Title"] = "Detalhes do Serviço";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Service/service.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Detalhes do Serviço</h1>
 
 <div class="detail-page d-flex flex-column mb-4">
     <h4 class="detail-name">@Html.DisplayFor(model => model.Description)</h4>
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
         <span class="group-desc">Dados de venda</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">
@@ -21,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
         <span class="group-desc">Outros</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">

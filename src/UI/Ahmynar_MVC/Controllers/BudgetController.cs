@@ -1,10 +1,12 @@
 ﻿using Ahmynar_MVC.Contracts;
 using Ahmynar_MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Ahmynar_MVC.Controllers
 {
+    [Authorize]
     public class BudgetController : Controller
     {
         private readonly IBudgetService _budgetServ;
@@ -41,8 +43,8 @@ namespace Ahmynar_MVC.Controllers
             var products = await _productServ.GetProducts();
             var services = await _serviceServ.GetServices();
             var customerItems = new SelectList(customers, "Id", "TradeName");
-            var productItems = new SelectList(products, "Id", "Description");
-            var serviceItems = new SelectList(services, "Id", "Description");
+            var productItems = new SelectList(products, "Id", "DescSale");
+            var serviceItems = new SelectList(services, "Id", "DescSale");
             var model = new CreateBudgetVM
             {
                 Customers = customerItems,

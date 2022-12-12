@@ -4,13 +4,17 @@
     ViewData["Title"] = "Detalhes do Cliente";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Customer/customer.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Detalhes do Cliente</h1>
 
 <div class="detail-page d-flex flex-column mb-4">
     @if (Model.TypeCustomer == Ahmynar_Domain.Enums.TypeCustomer.LegalEntity)
     {
         <h4 class="detail-name">@Html.DisplayFor(model => model.TradeName) ► @Html.DisplayFor(model => model.TypeCustomer)</h4>
-        <div class="group-data mb-2">
+        <div class="group-data mb-3">
             <span class="group-desc">Dados pessoais</span>
             <div class="d-flex justify-content-between mt-2">
                 <div class="group-row d-flex flex-column">
@@ -51,7 +55,7 @@
     else
     {
         <h4 class="detail-name">@Html.DisplayFor(model => model.CustomerName) ► @Html.DisplayFor(model => model.TypeCustomer)</h4>
-        <div class="group-data mb-2">
+        <div class="group-data mb-3">
             <span class="group-desc">Dados pessoais</span>
             <div class="d-flex justify-content-between mt-2">
                 <div class="group-row d-flex flex-column">
@@ -66,7 +70,7 @@
                     <div class="group-row-label">
                         @Html.DisplayNameFor(model => model.Rg)
                     </div>
-                    <div class="group-row-data">
+                    <div class="group-row-data rg-num">
                         @Html.DisplayFor(model => model.Rg)
                     </div>
                 </div>
@@ -81,14 +85,14 @@
             </div>
         </div>
     }
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
         <span class="group-desc">Dados de contato</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">
                 <div class="group-row-label">
                     @Html.DisplayNameFor(model => model.Phone)
                 </div>
-                <div class="group-row-data">
+                <div class="group-row-data phone-num">
                     @Html.DisplayFor(model => model.Phone)
                 </div>
             </div>
@@ -110,7 +114,7 @@
             </div>
         </div>
     </div>
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
         <span class="group-desc">Dados de endereço</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">
@@ -145,6 +149,8 @@
                     @Html.DisplayFor(model => model.AddressComplement)
                 </div>
             </div>
+        </div>
+        <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">
                 <div class="group-row-label">
                     @Html.DisplayNameFor(model => model.City)
@@ -165,7 +171,7 @@
                 <div class="group-row-label">
                     @Html.DisplayNameFor(model => model.Cep)
                 </div>
-                <div class="group-row-data">
+                <div class="group-row-data cep-num">
                     @Html.DisplayFor(model => model.Cep)
                 </div>
             </div>
@@ -179,7 +185,7 @@
             </div>
         </div>
     </div>
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
         <span class="group-desc">Outros</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">

@@ -24,6 +24,7 @@ namespace Ahmynar_MVC.Services
             {
                 var response = new Response<int>();
                 CreateEquipamentDto createEquipament = _mapper.Map<CreateEquipamentDto>(equipament);
+                AddBearerToken();
                 var apiResponse = await _client.EquipamentPOSTAsync(createEquipament);
 
                 if (apiResponse.Success)
@@ -50,6 +51,7 @@ namespace Ahmynar_MVC.Services
         {
             try
             {
+                AddBearerToken();
                 await _client.EquipamentDELETEAsync(id);
                 return new Response<int> { Success = false };
             }
@@ -61,12 +63,14 @@ namespace Ahmynar_MVC.Services
 
         public async Task<EquipamentVM> GetEquipamentDetails(int id)
         {
+            AddBearerToken();
             var equipament = await _client.EquipamentGETAsync(id);
             return _mapper.Map<EquipamentVM>(equipament);
         }
 
         public async Task<List<EquipamentVM>> GetEquipaments()
         {
+            AddBearerToken();
             var equipaments = await _client.EquipamentAllAsync();
             return _mapper.Map<List<EquipamentVM>>(equipaments);
         }
@@ -76,6 +80,7 @@ namespace Ahmynar_MVC.Services
             try
             {
                 UpdateEquipamentDto equipamentDto = _mapper.Map<UpdateEquipamentDto>(equipament);
+                AddBearerToken();
                 await _client.EquipamentPUTAsync(equipamentDto);
                 return new Response<int> { Success = true };
             }

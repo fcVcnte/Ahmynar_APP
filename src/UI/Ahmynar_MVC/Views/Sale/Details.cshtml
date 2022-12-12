@@ -4,13 +4,17 @@
     ViewData["Title"] = "Detalhes da Venda";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Sale/sale.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Detalhes da Venda</h1>
 
 <div class="detail-page d-flex flex-column mb-4">
     @if (Model.TypeSale == Ahmynar_Domain.Enums.TypeSale.BudgetSale)
     {
-        <h4 class="detail-name">@Html.DisplayFor(model => model.Budget.Number) ► @Html.DisplayFor(model => model.TypeSale)</h4>
-        <div class="group-data mb-2">
+        <h4 class="detail-name budget-num">@Html.DisplayFor(model => model.Budget.Number)<span class="detail-name"> ► @Html.DisplayFor(model => model.TypeSale)</span></h4>
+        <div class="group-data mb-3">
             <span class="group-desc">Dados de pagamento</span>
             <div class="d-flex justify-content-between mt-2">
                 <div class="group-row d-flex flex-column">
@@ -25,7 +29,7 @@
                     <div class="group-row-label">
                         @Html.DisplayNameFor(model => model.InstallmentPayment)
                     </div>
-                    <div class="group-row-data cpf-cnpj">
+                    <div class="group-row-data">
                         @Html.DisplayFor(model => model.InstallmentPayment)
                     </div>
                 </div>
@@ -43,19 +47,19 @@
     else
     {
         <h4 class="detail-name">► @Html.DisplayFor(model => model.TypeSale)</h4>
-        <div class="group-data mb-2">
+        <div class="group-data mb-3">
             <span class="group-desc">Dados de pagamento</span>
             <div class="d-flex justify-content-between mt-2">
                 <div class="group-row d-flex flex-column">
                     <div class="group-row-label">
                         @Html.DisplayNameFor(model => model.ProductIds)
                     </div>
-                    <ol class="group-row-data">
-                        @foreach (var prod in Model.Products)
-                        {
-                            <li>@prod.Description </li>
-                        }
-                    </ol>
+                    @foreach (var prod in Model.Products)
+                    {
+                        <div class="group-row-data">
+                            @prod.Description
+                        </div>
+                    }
                 </div>
                 <div class="group-row d-flex flex-column">
                     <div class="group-row-label">
@@ -69,7 +73,7 @@
                     <div class="group-row-label">
                         @Html.DisplayNameFor(model => model.InstallmentPayment)
                     </div>
-                    <div class="group-row-data cpf-cnpj">
+                    <div class="group-row-data">
                         @Html.DisplayFor(model => model.InstallmentPayment)
                     </div>
                 </div>
@@ -84,7 +88,7 @@
             </div>
         </div>
     }
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
         <span class="group-desc">Outros</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">

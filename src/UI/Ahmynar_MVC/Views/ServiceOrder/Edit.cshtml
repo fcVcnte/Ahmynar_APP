@@ -4,6 +4,10 @@
     ViewData["Title"] = "Editar Ordem de Serviço";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/ServiceOrder/serviceOrder.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Editar OS</h1>
 
 <div class="edit-page">
@@ -39,7 +43,7 @@
                         <label asp-for="Number" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Number" class="input-data" />
+                        <input asp-for="Number" class="input-data so-num" />
                     </div>
                     <span asp-validation-for="Number" class="text-danger"></span>
                 </div>
@@ -48,7 +52,7 @@
                         <label asp-for="BudgetId" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <select asp-for="BudgetId" asp-items="Model.Budgets" class="selectize-data">
+                        <select asp-for="BudgetId" asp-items="Model.Budgets" class="selectize-data budget-num">
                         </select>
                     </div>
                     <span asp-validation-for="BudgetId" class="text-danger"></span>
@@ -97,7 +101,7 @@
             </div>
         </div>
         <div class="footer-buttoms d-flex justify-content-end mt-4">
-            <button id="btnBack" class="btn-details">
+            <button type="button" id="btnBack" class="btn-details">
                 <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
             </button>
             <button type="submit" value="Save" class="btn-details">

@@ -1,10 +1,12 @@
 ﻿using Ahmynar_MVC.Contracts;
 using Ahmynar_MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Ahmynar_MVC.Controllers
 {
+    [Authorize]
     public class EquipamentController : Controller
     {
         private readonly IEquipamentService _equipamentServ;

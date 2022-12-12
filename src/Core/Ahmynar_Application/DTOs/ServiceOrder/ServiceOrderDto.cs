@@ -17,6 +17,7 @@ namespace Ahmynar_Application.DTOs.ServiceOrder
         public float Total { get; set; }
         public string? Obs { get; set; }
         public int BudgetId { get; set; }
+        public DateTime DateCreated { get; set; }
 
         public BudgetDto Budget { get; set; }
     }

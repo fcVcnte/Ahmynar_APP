@@ -16,6 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Ahmynar_Identity\Ahmynar_Identity.csproj" />
+    <ProjectReference Include="..\..\Core\Ahmynar_Application\Ahmynar_Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Ahmynar_Infrastructure\Ahmynar_Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Ahmynar_Persistence\Ahmynar_Persistence.csproj" />
   </ItemGroup>

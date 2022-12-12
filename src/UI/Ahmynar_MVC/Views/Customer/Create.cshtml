@@ -4,6 +4,10 @@
     ViewData["Title"] = "Criar Cliente";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Customer/customer.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Novo Cliente</h1>
 
 <div class="create-page">
@@ -45,7 +49,7 @@
                         <label asp-for="Cnpj" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Cnpj" id="cnpjNumber" class="input-data" />
+                        <input asp-for="Cnpj" id="cnpjNumber" class="input-data cnpj-num" />
                     </div>
                     <span asp-validation-for="Cnpj" class="text-danger"></span>
                 </div>
@@ -54,7 +58,7 @@
                         <label asp-for="IE" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="IE" id="ieNumber" class="input-data" />
+                        <input asp-for="IE" id="ieNumber" class="input-data" maxlength="14" />
                     </div>
                     <span asp-validation-for="IE" class="text-danger"></span>
                 </div>
@@ -63,7 +67,7 @@
                         <label asp-for="IM" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="IM" id="imNumber" class="input-data" />
+                        <input asp-for="IM" id="imNumber" class="input-data" maxlength="15" />
                     </div>
                     <span asp-validation-for="IM" class="text-danger"></span>
                 </div>
@@ -86,7 +90,7 @@
                         <label asp-for="Cpf" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Cpf" id="cpfNumber" class="input-data" />
+                        <input asp-for="Cpf" id="cpfNumber" class="input-data cpf-num" />
                     </div>
                     <span asp-validation-for="Cpf" class="text-danger"></span>
                 </div>
@@ -95,7 +99,7 @@
                         <label asp-for="Rg" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Rg" id="rgNumber" class="input-data" />
+                        <input asp-for="Rg" id="rgNumber" class="input-data rg-num" />
                     </div>
                     <span asp-validation-for="Rg" class="text-danger"></span>
                 </div>
@@ -118,7 +122,7 @@
                         <label asp-for="Phone" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Phone" class="input-data" />
+                        <input asp-for="Phone" class="input-data phone-num" />
                     </div>
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
@@ -127,7 +131,7 @@
                         <label asp-for="Cellphone" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Cellphone" class="input-data" />
+                        <input asp-for="Cellphone" class="input-data cellphone-num" />
                     </div>
                     <span asp-validation-for="Cellphone" class="text-danger"></span>
                 </div>
@@ -143,7 +147,7 @@
             </div>
         </div>
         <div class="d-flex flex-column mb-2 group-data">
-            <span class="group-desc">Dados de contato</span>
+            <span class="group-desc">Dados de endereço</span>
             <div class="d-flex flex-column ">
                 <div class="d-flex justify-content-between">
                     <div class="group-row d-flex flex-column mb-2">
@@ -198,7 +202,7 @@
                             <label asp-for="State" class="control-label"></label>
                         </div>
                         <div class="group-row-data">
-                            <input asp-for="State" class="input-data" />
+                            <input asp-for="State" maxlength="2" class="input-data" />
                         </div>
                         <span asp-validation-for="State" class="text-danger"></span>
                     </div>
@@ -207,7 +211,7 @@
                             <label asp-for="Cep" class="control-label"></label>
                         </div>
                         <div class="group-row-data">
-                            <input asp-for="Cep" class="input-data" />
+                            <input asp-for="Cep" class="input-data cep-num" />
                         </div>
                         <span asp-validation-for="Cep" class="text-danger"></span>
                     </div>
@@ -238,7 +242,7 @@
             </div>
         </div>
         <div class="footer-buttoms d-flex justify-content-end mt-4">
-            <button id="btnBack" class="btn-details">
+            <button type="button" id="btnBack" class="btn-details">
                 <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
             </button>
             <button type="submit" value="Create" class="btn-details">
@@ -253,33 +257,33 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
-    <script>
-        $(document).on("click", ".radio-data", function () {
-            if ($("#NaturalPerson").is(":checked")) {
-                $("#companyName").val("");
-                $("#tradeName").val("");
-                $("#cnpjNumber").val("");
-                $("#ieNumber").val("");
-                $("#imNumber").val("");
-                $(".group-data-natural-person").removeClass("d-none").addClass("d-flex");
-                $(".group-data-legal-entity").removeClass("d-flex").addClass("d-none");
+<script>
+    $(document).on("click", ".radio-data", function () {
+        if ($("#NaturalPerson").is(":checked")) {
+            $("#companyName").val("");
+            $("#tradeName").val("");
+            $("#cnpjNumber").val("");
+            $("#ieNumber").val("");
+            $("#imNumber").val("");
+            $(".group-data-natural-person").removeClass("d-none").addClass("d-flex");
+            $(".group-data-legal-entity").removeClass("d-flex").addClass("d-none");
 
-            }
-            else if ($("#LegalEntity").is(':checked')) {
-                $("#customerName").val("");
-                $("#cpfNumber").val("");
-                $("#rgNumber").val("");
-                $("#birthDate").val("");
-                $(".group-data-legal-entity").removeClass("d-none").addClass("d-flex");
-                $(".group-data-natural-person").removeClass("d-flex").addClass("d-none");
-            }
-        });
+        }
+        else if ($("#LegalEntity").is(':checked')) {
+            $("#customerName").val("");
+            $("#cpfNumber").val("");
+            $("#rgNumber").val("");
+            $("#birthDate").val("");
+            $(".group-data-legal-entity").removeClass("d-none").addClass("d-flex");
+            $(".group-data-natural-person").removeClass("d-flex").addClass("d-none");
+        }
+    });
 
-        $("#btnBack").click(function () {
-            $("span").each(function () {
-                $(this).remove();
-            });
-            location.href = '@(Html.Raw(Url.Action("Index")))';
+    $("#btnBack").click(function () {
+        $("span").each(function () {
+            $(this).remove();
         });
-    </script>
+        location.href = '@(Html.Raw(Url.Action("Index")))';
+    });
+</script>
 }

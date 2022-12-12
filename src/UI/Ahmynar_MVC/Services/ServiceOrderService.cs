@@ -23,7 +23,9 @@ namespace Ahmynar_MVC.Services
             try
             {
                 var response = new Response<int>();
+                serviceOrder.Total -= (float)serviceOrder.TotalDiscounts;
                 CreateServiceOrderDto createServiceOrder = _mapper.Map<CreateServiceOrderDto>(serviceOrder);
+                AddBearerToken();
                 var apiResponse = await _client.ServiceOrderPOSTAsync(createServiceOrder);
 
                 if (apiResponse.Success)
@@ -50,6 +52,7 @@ namespace Ahmynar_MVC.Services
         {
             try
             {
+                AddBearerToken();
                 await _client.ServiceOrderDELETEAsync(id);
                 return new Response<int> { Success = false };
             }
@@ -61,6 +64,7 @@ namespace Ahmynar_MVC.Services
 
         public async Task<ServiceOrderVM> GetServiceOrderDetails(int id)
         {
+            AddBearerToken();
             var serviceOrder = await _client.ServiceOrderGETAsync(id);
             serviceOrder.Budget = await _client.BudgetGETAsync((int)serviceOrder.BudgetId);
             return _mapper.Map<ServiceOrderVM>(serviceOrder);
@@ -68,6 +72,7 @@ namespace Ahmynar_MVC.Services
 
         public async Task<List<ServiceOrderVM>> GetServiceOrders()
         {
+            AddBearerToken();
             var serviceOrders = await _client.ServiceOrderAllAsync();
             foreach (var serviceOrder in serviceOrders)
             {
@@ -81,6 +86,7 @@ namespace Ahmynar_MVC.Services
             try
             {
                 UpdateServiceOrderDto serviceOrderDto = _mapper.Map<UpdateServiceOrderDto>(serviceOrder);
+                AddBearerToken();
                 await _client.ServiceOrderPUTAsync(serviceOrderDto);
                 return new Response<int> { Success = true };
             }

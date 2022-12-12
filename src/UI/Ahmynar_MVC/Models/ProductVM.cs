@@ -42,5 +42,10 @@ namespace Ahmynar_MVC.Models
         public int? SupplierId { get; set; }
 
         public SelectList Suppliers { get; set; }
+
+        public string DescSale 
+        {
+            get { return Description + " | [R$" + SalePrice + "] "; }
+        }
     }
 }

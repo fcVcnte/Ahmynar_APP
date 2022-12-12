@@ -25,7 +25,7 @@ namespace Ahmynar_Application.DTOs.Product.Validators
 
             RuleFor(p => p.Quantity)
                 .NotNull()
-                .GreaterThan(0);
+                .Equal(0);
 
             RuleFor(p => p.Unit)
                 .MaximumLength(15).WithMessage("{PropertyName} não pode exceder 15 caracteres.");
@@ -36,15 +36,6 @@ namespace Ahmynar_Application.DTOs.Product.Validators
 
             RuleFor(p => p.Obs)
                 .MaximumLength(100).WithMessage("{PropertyName} não pode exceder 100 caracteres.");
-
-            //RuleFor(p => p.SupplierId)
-            //    .GreaterThan(0)
-            //    .MustAsync(async (id, token) =>
-            //    {
-            //        var supplierExists = await _supplierRepo.Exists((int)id);
-            //        return supplierExists;
-            //    })
-            //    .WithMessage("{PropertyName} não existe.");
         }
     }
 }

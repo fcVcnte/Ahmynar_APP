@@ -1,11 +1,13 @@
 ﻿using Ahmynar_MVC.Contracts;
 using Ahmynar_MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Ahmynar_MVC.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IProductService _productServ;
@@ -100,6 +102,48 @@ namespace Ahmynar_MVC.Controllers
                 ModelState.AddModelError("", ex.Message);
             }
             return View(product);
+        }
+
+        // POST: ProductController/CheckIn/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CheckIn(int id, int quantityIn)
+        {
+            try
+            {
+                var response = await _productServ.CheckInProduct(id, quantityIn);
+                if (response.Success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                ModelState.AddModelError("", response.ValidationErrors);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        // POST: ProductController/CheckOut/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CheckOut(int id, int quantityOut)
+        {
+            try
+            {
+                var response = await _productServ.CheckOutProduct(id, quantityOut);
+                if (response.Success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                ModelState.AddModelError("", response.ValidationErrors);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: ProductController/Delete/5

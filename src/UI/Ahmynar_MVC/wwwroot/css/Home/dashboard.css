@@ -1,0 +1,100 @@
+﻿.div-dashboard {
+    background-color: var(--color-black-secundary);
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.div-title {
+    font: var(--font-montserrat);
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--color-white-primary);
+    margin-bottom: 2rem;
+}
+
+.row:first-child {
+    margin-bottom: 2rem;
+}
+
+.div-h-items {
+    background-color: var(--color-black-primary);
+    padding: 1rem 6rem 3rem 0;
+    border-radius: 10px;
+    margin: 0 1rem 0 1rem;
+}
+
+    .div-h-items:first-child {
+        margin-left: 0 !important;
+    }
+
+    .div-h-items:last-child {
+        margin-right: 0 !important;
+    }
+
+.div-h-items-title {
+    color: var(--color-white-terciary);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 3rem;
+    padding-left: 1rem;
+}
+
+.div-h-items-content {
+    color: var(--color-white-secundary);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    margin-bottom: 1rem;
+    padding-left: 6rem;
+}
+
+.div-h-items-footer {
+    color: var(--color-white-primary);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+    font-size: 14px;
+    padding-left: 6rem;
+}
+
+.col-sm-8 {
+    width: 74.5%;
+}
+
+.col-sm-4 {
+    width: 22.9%;
+}
+
+.div-b-items {
+    background-color: var(--color-black-primary);
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 0 1rem 0 1rem;
+}
+
+    .div-b-items:first-child {
+        margin-left: 0 !important;
+    }
+
+    .div-b-items:last-child {
+        margin-right: 0 !important;
+    }
+
+.btn-shortcut {
+    background-color: var(--color-black-secundary);
+    font: 'Roboto', sans-serif !important;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color-white-terciary);
+    border: 0;
+    border-radius: 6px;
+    padding: 0 0 0 2rem;
+}
+
+    .btn-shortcut:hover {
+        background-color: var(--color-purple-secundary);
+    }
+
+    .btn-shortcut:focus {
+        background-color: var(--color-purple-primary);
+    }

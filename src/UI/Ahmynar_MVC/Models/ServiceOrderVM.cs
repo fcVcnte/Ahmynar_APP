@@ -6,6 +6,7 @@ namespace Ahmynar_MVC.Models
     public class ServiceOrderVM : CreateServiceOrderVM
     {
         public int Id { get; set; }
+        public DateTime DateCreated { get; set; }
         public BudgetVM Budget { get; set; }
     }
 
@@ -15,8 +16,14 @@ namespace Ahmynar_MVC.Models
         [Display(Name = "Número da OS")]
         public long Number { get; set; }
 
+        [Required]
         [Display(Name = "Data de Vencimento")]
-        public DateTime? DepartureDate { get; set; }
+        public DateTime DepartureDate
+        {
+            get { return departureDate; }
+            set { departureDate = value; }
+        }
+
         public Ahmynar_Domain.Enums.StatusDescription Status { get; set; }
 
         [Required]
@@ -34,5 +41,7 @@ namespace Ahmynar_MVC.Models
         [Display(Name = "Número do Orçamento")]
         public int BudgetId { get; set; }
         public SelectList Budgets { get; set; }
+
+        private DateTime departureDate = DateTime.Now.Date.AddDays(30);
     }
 }

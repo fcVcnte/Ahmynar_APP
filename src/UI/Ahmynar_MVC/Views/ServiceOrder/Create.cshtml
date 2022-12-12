@@ -4,6 +4,10 @@
     ViewData["Title"] = "Criar Ordem de Serviço";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/ServiceOrder/serviceOrder.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Nova OS</h1>
 
 <div class="create-page">
@@ -16,7 +20,7 @@
                     <label asp-for="Status" class="form-check-label radio-label">
                         @(s.ToString() == "Open" ? "Aberto" : s.ToString() == "InQueue" ? "Na fila" : s.ToString() == "InProcess" ? "Em processo" : s.ToString() == "Finished" ? "Finalizado" : "Cancelado")
                     </label>
-                    <input asp-for="Status" type="radio" value="@((int)s)" class="form-check-input radio-data" id="@s.ToString()" checked="checked" />
+                    <input asp-for="Status" type="radio" value="@((int)s)" class="form-check-input radio-data" id="@s.ToString()" />
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
             }
@@ -29,7 +33,7 @@
                         <label asp-for="Number" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Number" class="input-data" />
+                        <input asp-for="Number" class="input-data so-num" />
                     </div>
                     <span asp-validation-for="Number" class="text-danger"></span>
                 </div>
@@ -38,7 +42,7 @@
                         <label asp-for="BudgetId" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <select asp-for="BudgetId" asp-items="Model.Budgets" class="selectize-data">
+                        <select asp-for="BudgetId" asp-items="Model.Budgets" id="budgetSelectize" class="selectize-data">
                         </select>
                     </div>
                     <span asp-validation-for="BudgetId" class="text-danger"></span>
@@ -48,7 +52,7 @@
                         <label asp-for="DepartureDate" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="DepartureDate" class="input-data" />
+                        <input asp-for="DepartureDate" class="input-data" readonly="readonly" />
                     </div>
                     <span asp-validation-for="DepartureDate" class="text-danger"></span>
                 </div>
@@ -57,7 +61,7 @@
                         <label asp-for="TotalDiscounts" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="TotalDiscounts" class="input-data" />
+                        <input asp-for="TotalDiscounts" id="sumDiscount" class="input-data" disabled="disabled" />
                     </div>
                     <span asp-validation-for="TotalDiscounts" class="text-danger"></span>
                 </div>
@@ -66,7 +70,7 @@
                         <label asp-for="Total" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Total" class="input-data" />
+                        <input asp-for="Total" id="sumTotal" class="input-data" readonly="readonly" />
                     </div>
                     <span asp-validation-for="Total" class="text-danger"></span>
                 </div>
@@ -87,7 +91,7 @@
             </div>
         </div>
         <div class="footer-buttoms d-flex justify-content-end mt-4">
-            <button id="btnBack" class="btn-details">
+            <button type="button" id="btnBack" class="btn-details">
                 <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
             </button>
             <button type="submit" value="Create" class="btn-details">
@@ -103,10 +107,15 @@
     }
 
 <script>
-    $(".selectize-data").selectize({
+    let select = $(".selectize-data").selectize({
         create: false,
         sortField: "text",
-        placeholder: "Selecione um cliente"
+        placeholder: "Selecione um orçamento"
+    });
+
+    $(document).ready(function() {
+        let selectize = select[0].selectize;
+        selectize.clear();
     });
 
     $("#btnBack").click(function () {
@@ -114,6 +123,24 @@
             $(this).remove();
         });
         location.href = '@(Html.Raw(Url.Action("Index")))';
+    });
+
+    $("#budgetSelectize").change(function () {
+        const text = $(this).text().trim();
+
+        if (text === "") {
+            $("#sumDiscount").prop("disabled", true);
+            return $("#sumTotal").val(0);
+        }
+
+        const regex = /(?<=\$)(.*?)(?=\])/g;
+        const arrayPrice = text.match(regex);;
+        const sumBudget = arrayPrice.reduce((acc, value) => {
+            return acc + parseInt(value);
+        }, 0);
+
+        $("#sumDiscount").prop("disabled", false);
+        $("#sumTotal").val(sumBudget);
     });
 </script>
 }

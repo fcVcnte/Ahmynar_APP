@@ -4,6 +4,10 @@
     ViewData["Title"] = "Lista de Produtos";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Product/product.css" asp-append-version="true" />
+</head>
+
 <div class="index-header d-flex justify-content-between align-items-baseline">
     <div class="d-flex flex-column">
         <h1 class="index-title">Lista de Produtos</h1>
@@ -45,39 +49,152 @@
         </tr>
     </thead>
     <tbody class="table-body">
-@foreach (var item in Model) {
-        <tr onclick="location.href = '@Url.Action("Details", new { id=item.Id })'">
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GroupProduct)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Unit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SalePrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Supplier.TradeName)
-            </td>
-            <td class="d-flex justify-content-center align-items-end">
-                <form asp-action="Edit" asp-route-id=@item.Id method="get">
-                    <button type="submit" class="btn btn-link td-button">
-                        <img src="~/icon/edit.svg" class="td-icon" />
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td onclick="location.href = '@Url.Action("Details", new { id=item.Id })'">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td onclick="location.href = '@Url.Action("Details", new { id=item.Id })'">
+                <td onclick="location.href = '@Url.Action("Details", new { id=item.Id })'">
+                    @Html.DisplayFor(modelItem => item.GroupProduct)
+                </td>
+                <td onclick="location.href = '@Url.Action("Details", new { id=item.Id })'">
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td onclick="location.href = '@Url.Action("Details", new { id=item.Id })'">
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+                <td onclick="location.href = '@Url.Action("Details", new { id=item.Id })'">
+                    @Html.DisplayFor(modelItem => item.SalePrice)
+                </td>
+                <td onclick="location.href = '@Url.Action("Details", new { id=item.Id })'">
+                    @Html.DisplayFor(modelItem => item.Supplier.TradeName)
+                </td>
+                <td class="d-flex justify-content-center align-items-end">
+                    <button type="button" class="btn btn-link td-button" onclick="CheckInModal(@item.Id)">
+                        <img src="~/icon/add-product.svg" title="Registrar Entrada" class="td-icon" />
                     </button>
-                </form>
-                <form asp-action="Delete" asp-route-id=@item.Id method="post">
-                    <button type="submit" class="btn btn-link td-button" onclick="return confirm('Deseja remover esse item?')">
-                        <img src="~/icon/delete.svg" class="td-icon" />
+                    <button type="button" class="btn btn-link td-button" onclick="CheckOutModal(@item.Id)">
+                        <img src="~/icon/remove-product.svg" title="Registrar Saída" class="td-icon" />
                     </button>
-                </form>
-            </td>
-        </tr>
-}
+                    <form asp-action="Edit" asp-route-id=@item.Id method="get">
+                        <button type="submit" class="btn btn-link td-button">
+                            <img src="~/icon/edit.svg" title="Editar" class="td-icon" />
+                        </button>
+                    </form>
+                    <form asp-action="Delete" asp-route-id=@item.Id method="post">
+                        <button type="submit" class="btn btn-link td-button" onclick="return confirm('Deseja remover esse item?')">
+                            <img src="~/icon/delete.svg" title="Deletar" class="td-icon" />
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<div class="modal fade" id="modalProdQttIn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Entrada do produto</h5>
+            </div>
+            <div class="modal-body">
+                <div class="d-none">
+                    <div class="group-row-label">
+                        <label for="idProdIn" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input type="number" id="idProdIn" class="input-data" value="0" />
+                    </div>
+                </div>
+                <div class="group-row-label">
+                    <label for="quantityIn" class="control-label">Quantidade de entrada</label>
+                </div>
+                <div class="group-row-data">
+                    <input type="number" min="0" id="quantityIn" class="input-data" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-modal" data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn-modal" onclick="CheckIn()">Registrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalProdQttOut" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Saída do produto</h5>
+            </div>
+            <div class="modal-body">
+                <div class="d-none">
+                    <div class="group-row-label">
+                        <label for="idProdOut" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input type="number" id="idProdOut" class="input-data" value="0" />
+                    </div>
+                </div>
+                <div class="group-row-label">
+                    <label for="quantityOut" class="control-label">Quantidade de saída</label>
+                </div>
+                <div class="group-row-data">
+                    <input type="number" min="0" id="quantityOut" class="input-data" />
+                </div>
+                <div class="group-row-label">
+                    <label for="reasonOut" class="control-label">Motivo de saída</label>
+                </div>
+                <div class="group-row-data">
+                    <input type="text" id="reasonOut" class="input-data" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-modal" data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn-modal" onclick="CheckOut()">Registrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    var t = $("input[name='__RequestVerificationToken']").val();
+
+    async function CheckInModal (id) {
+        $("#modalProdQttIn").modal("show");
+        $("#idProdIn").attr("value", id);
+    }
+
+    async function CheckOutModal (id) {
+        $("#modalProdQttOut").modal("show");
+        $("#idProdOut").attr("value", id);
+    }
+
+    async function CheckIn () {
+        $.ajax({
+            type: "POST",
+            url: "CheckIn",
+            data: { id: +$("#idProdIn").val(), quantityIn: +$("#quantityIn").val() },
+            headers:
+            {
+                "RequestVerificationToken": t
+            }
+        }).done(() => location.reload());
+    }
+
+    async function CheckOut () {
+        $.ajax({
+            type: "POST",
+            url: "CheckOut",
+            data: { id: +$("#idProdOut").val(), quantityOut: +$("#quantityOut").val() },
+            headers:
+            {
+                "RequestVerificationToken": t
+            }
+        }).done(() => location.reload());
+    }
+</script>
+}

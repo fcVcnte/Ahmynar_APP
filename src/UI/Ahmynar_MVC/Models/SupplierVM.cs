@@ -10,11 +10,11 @@ namespace Ahmynar_MVC.Models
     public class CreateSupplierVM
     {
         [Required]
-        [Display(Name = "Nome Empresa")]
+        [Display(Name = "Razão Social")]
         public string CompanyName { get; set; }
 
         [Required]
-        [Display(Name = "Nome Fantasia")]
+        [Display(Name = "Nome Empresarial")]
         public string TradeName { get; set; }
 
         [Required]
@@ -26,7 +26,7 @@ namespace Ahmynar_MVC.Models
         public string IE { get; set; }
 
         [Required]
-        [Display(Name = "Celular")]
+        [Display(Name = "Telefone")]
         public string Phone { get; set; }
 
         [Required]
@@ -61,7 +61,7 @@ namespace Ahmynar_MVC.Models
         public string Country { get; set; }
 
         [Required]
-        [Display(Name = "E-Mail")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Display(Name = "Site")]

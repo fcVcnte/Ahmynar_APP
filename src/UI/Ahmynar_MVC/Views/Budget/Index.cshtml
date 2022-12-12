@@ -4,6 +4,10 @@
     ViewData["Title"] = "Lista de Orçamentos";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Budget/budget.css" asp-append-version="true" />
+</head>
+
 <div class="index-header d-flex justify-content-between align-items-baseline">
     <div class="d-flex flex-column">
         <h1 class="index-title">Lista de Orçamentos</h1>
@@ -50,14 +54,14 @@
     <tbody class="table-body">
 @foreach (var item in Model) {
         <tr onclick="location.href = '@Url.Action("Details", new { id=item.Id })'">
-            <td>
+            <td class="budget-num">
                 @Html.DisplayFor(modelItem => item.Number)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerId)
+                @(item.Customer.TradeName == null ? item.Customer.CustomerName : item.Customer.TradeName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ExpireDate)
@@ -72,14 +76,14 @@
                 @Html.DisplayFor(modelItem => item.Total)
             </td>
             <td class="d-flex justify-content-center align-items-end">
-                <form asp-action="Edit" asp-route-id=@item.Id method="get">
-                    <button type="submit" class="btn btn-link td-button">
-                        <img src="~/icon/edit.svg" class="td-icon" />
+                <form asp-action="Cancel" asp-route-id=@item.Id method="post">
+                    <button type="submit" class="btn btn-link td-button"onclick="return confirm('Deseja cancelar esse item?')">
+                        <img src="~/icon/cancel-budget.svg" title="Cancel" class="td-icon" />
                     </button>
                 </form>
                 <form asp-action="Delete" asp-route-id=@item.Id method="post">
                     <button type="submit" class="btn btn-link td-button" onclick="return confirm('Deseja remover esse item?')">
-                        <img src="~/icon/delete.svg" class="td-icon" />
+                        <img src="~/icon/delete.svg" title="Deletar" class="td-icon" />
                     </button>
                 </form>
             </td>

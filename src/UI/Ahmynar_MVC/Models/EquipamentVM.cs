@@ -12,7 +12,7 @@ namespace Ahmynar_MVC.Models
     public class CreateEquipamentVM
     {
         [Required]
-        [Display(Name = "Tipo do Equipamento")]
+        [Display(Name = "Tipo")]
         public Ahmynar_Domain.Enums.TypeEquipament TypeEquipament { get; set; }
 
         [Required]

@@ -4,6 +4,10 @@
     ViewData["Title"] = "Criar Orçamento";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Budget/budget.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Novo Orçamento</h1>
 
 <div class="create-page">
@@ -16,7 +20,7 @@
                     <label asp-for="Status" class="form-check-label radio-label">
                         @(s.ToString() == "Open" ? "Aberto" : s.ToString() == "InQueue" ? "Na fila" : s.ToString() == "InProcess" ? "Em processo" : s.ToString() == "Finished" ? "Finalizado" : "Cancelado")
                     </label>
-                    <input asp-for="Status" type="radio" value="@((int)s)" class="form-check-input radio-data" id="@s.ToString()" checked="checked" />
+                    <input asp-for="Status" type="radio" value="@((int)s)" class="form-check-input radio-data" id="@s.ToString()" />
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
             }
@@ -39,7 +43,7 @@
                         <label asp-for="TotalProducts" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="TotalProducts" class="input-data" />
+                        <input asp-for="TotalProducts" id="sumProducts" class="input-data" readonly="readonly" />
                     </div>
                     <span asp-validation-for="TotalProducts" class="text-danger"></span>
                 </div>
@@ -63,7 +67,7 @@
                         <label asp-for="TotalServices" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="TotalServices" class="input-data" />
+                        <input asp-for="TotalServices" id="sumServices" class="input-data" readonly="readonly" />
                     </div>
                     <span asp-validation-for="TotalServices" class="text-danger"></span>
                 </div>
@@ -77,7 +81,7 @@
                         <label asp-for="Number" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Number" class="input-data" />
+                        <input asp-for="Number" class="input-data budget-num" />
                     </div>
                     <span asp-validation-for="Number" class="text-danger"></span>
                 </div>
@@ -96,7 +100,7 @@
                         <label asp-for="ExpireDate" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="ExpireDate" class="input-data" />
+                        <input asp-for="ExpireDate" class="input-data" readonly="readonly" />
                     </div>
                     <span asp-validation-for="ExpireDate" class="text-danger"></span>
                 </div>
@@ -105,7 +109,7 @@
                         <label asp-for="Total" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Total" class="input-data" />
+                        <input asp-for="Total" id="sumTotal" class="input-data" readonly="readonly" />
                     </div>
                     <span asp-validation-for="Total" class="text-danger"></span>
                 </div>
@@ -126,7 +130,7 @@
             </div>
         </div>
         <div class="footer-buttoms d-flex justify-content-end mt-4">
-            <button id="btnBack" class="btn-details">
+            <button type="button" id="btnBack" class="btn-details">
                 <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
             </button>
             <button type="submit" value="Create" class="btn-details">
@@ -142,35 +146,108 @@
     }
 
 <script>
-      $("#productSelectize").selectize({
-          plugins: ["remove_button"],
-          delimiter: ",",
-          persist: false,
-          create: false,
-          sortField: "text",
-          placeholder: "Selecione um produto"
-      });
+    $("#productSelectize").selectize({
+        plugins: ["remove_button"],
+        delimiter: ",",
+        persist: false,
+        create: false,
+        sortField: "text",
+        placeholder: "Selecione um produto"
+    });
 
-      $("#serviceSelectize").selectize({
-          plugins: ["remove_button"],
-          delimiter: ",",
-          persist: false,
-          create: false,
-          sortField: "text",
-          placeholder: "Selecione um serviço"
-      });
+    $("#serviceSelectize").selectize({
+        plugins: ["remove_button"],
+        delimiter: ",",
+        persist: false,
+        create: false,
+        sortField: "text",
+        placeholder: "Selecione um serviço"
+    });
 
-      $("#customerSelectize").selectize({
-          create: false,
-          sortField: "text",
-          placeholder: "Selecione um cliente"
-      });
+    let select = $("#customerSelectize").selectize({
+        create: false,
+        sortField: "text",
+        placeholder: "Selecione um cliente"
+    });
 
-      $("#btnBack").click(function () {
-          $("span").each(function () {
-              $(this).remove();
-          });
-          location.href = '@(Html.Raw(Url.Action("Index")))';
-      });
+    $(document).ready(function() {
+        let selectize = select[0].selectize;
+        selectize.clear();
+    });
+
+    $("#btnBack").click(function () {
+        $("span").each(function () {
+            $(this).remove();
+        });
+        location.href = '@(Html.Raw(Url.Action("Index")))';
+    });
+
+    $("#productSelectize").change(function () {
+        const text = $(this).text().trim();
+
+        if (text === "") {
+            return $("#sumProducts").val(0);
+        }
+
+        const regex = /(?<=\$)(.*?)(?=\])/g;
+        const arrayPrice = text.match(regex);;
+        const sumProduct = arrayPrice.reduce((acc, value) => {
+            return acc + parseInt(value);
+        }, 0);
+
+        $("#sumProducts").val(sumProduct);
+    });
+
+    $("#serviceSelectize").change(function () {
+        const text = $(this).text().trim();
+
+        if (text === "") {
+            return $("#sumServices").val(0);
+        }
+
+        const regex = /(?<=\$)(.*?)(?=\])/g;
+        const arrayPrice = text.match(regex);;
+        const sumService = arrayPrice.reduce((acc, value) => {
+            return acc + parseInt(value);
+        }, 0);
+
+        $("#sumServices").val(sumService);
+    });
+
+    let sumProducts = document.querySelector("#sumProducts");
+    let sumServices = document.querySelector("#sumServices");
+
+    observeElement(sumProducts, "value", function (oldValue, newValue) {
+        const sumTotal = $("#sumTotal").val();
+        let newSumTotal = isNaN(oldValue) ? sumTotal - 0 + newValue : sumTotal - oldValue + newValue;
+        $("#sumTotal").val(newSumTotal);
+    });
+
+    observeElement(sumServices, "value", function (oldValue, newValue) {
+        const sumTotal = $("#sumTotal").val();
+        let newSumTotal = isNaN(oldValue) ? sumTotal - 0 + newValue : sumTotal - oldValue + newValue;
+        $("#sumTotal").val(newSumTotal);
+    });
+
+    function observeElement(element, property, callback, delay = 0) {
+        let elementPrototype = Object.getPrototypeOf(element);
+        if (elementPrototype.hasOwnProperty(property)) {
+            let descriptor = Object.getOwnPropertyDescriptor(elementPrototype, property);
+            Object.defineProperty(element, property, {
+                get: function() {
+                    return descriptor.get.apply(this, arguments);
+                },
+                set: function () {
+                    let oldValue = parseInt(this[property]);
+                    descriptor.set.apply(this, arguments);
+                    let newValue = parseInt(this[property]);
+                    if (typeof callback == "function") {
+                        setTimeout(callback.bind(this, oldValue, newValue), delay);
+                    }
+                    return newValue;
+                }
+            });
+        }
+    }
 </script>
 }

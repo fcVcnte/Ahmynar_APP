@@ -1,10 +1,12 @@
 ﻿using Ahmynar_MVC.Contracts;
 using Ahmynar_MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ahmynar_MVC.Controllers
 {
+    [Authorize]
     public class SupplierController : Controller
     {
         private readonly ISupplierService _supplierServ;

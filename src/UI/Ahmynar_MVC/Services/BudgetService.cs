@@ -24,6 +24,7 @@ namespace Ahmynar_MVC.Services
             {
                 var response = new Response<int>();
                 CreateBudgetDto createBudget = _mapper.Map<CreateBudgetDto>(budget);
+                AddBearerToken();
                 var apiResponse = await _client.BudgetPOSTAsync(createBudget);
 
                 if (apiResponse.Success)
@@ -50,6 +51,7 @@ namespace Ahmynar_MVC.Services
         {
             try
             {
+                AddBearerToken();
                 await _client.CancelAsync(id);
                 return new Response<int> { Success = false };
             }
@@ -63,6 +65,7 @@ namespace Ahmynar_MVC.Services
         {
             try
             {
+                AddBearerToken();
                 await _client.BudgetDELETEAsync(id);
                 return new Response<int> { Success = false };
             }
@@ -74,12 +77,14 @@ namespace Ahmynar_MVC.Services
 
         public async Task<BudgetVM> GetBudgetDetails(int id)
         {
+            AddBearerToken();
             var budget = await _client.BudgetGETAsync(id);
             return _mapper.Map<BudgetVM>(budget);
         }
 
         public async Task<List<BudgetVM>> GetBudgets()
         {
+            AddBearerToken();
             var budgets = await _client.BudgetAllAsync();
             return _mapper.Map<List<BudgetVM>>(budgets);
         }

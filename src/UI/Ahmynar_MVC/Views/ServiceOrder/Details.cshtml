@@ -4,18 +4,22 @@
     ViewData["Title"] = "Detalhes da Ordem de Serviço";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/ServiceOrder/serviceOrder.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Detalhes da OS</h1>
 
 <div class="detail-page d-flex flex-column mb-4">
-    <h4 class="detail-name">@Html.DisplayFor(model => model.Number) ► @Html.DisplayFor(model => model.Status)</h4>
-    <div class="group-data mb-2">
+    <h4 class="detail-name">@Html.DisplayFor(model => model.Number)<span class="detail-name"> ► @Html.DisplayFor(model => model.Status)</span></h4>
+    <div class="group-data mb-3">
         <span class="group-desc">Dados da OS</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">
                 <div class="group-row-label">
                     @Html.DisplayNameFor(model => model.BudgetId)
                 </div>
-                <div class="group-row-data">
+                <div class="group-row-data budget-num">
                     @Html.DisplayFor(model => model.Budget.Number)
                 </div>
             </div>
@@ -23,7 +27,7 @@
                 <div class="group-row-label">
                     @Html.DisplayNameFor(model => model.DepartureDate)
                 </div>
-                <div class="group-row-data cpf-cnpj">
+                <div class="group-row-data">
                     @Html.DisplayFor(model => model.DepartureDate)
                 </div>
             </div>
@@ -31,7 +35,7 @@
                 <div class="group-row-label">
                     @Html.DisplayNameFor(model => model.TotalDiscounts)
                 </div>
-                <div class="group-row-data cpf-cnpj">
+                <div class="group-row-data">
                     @Html.DisplayFor(model => model.TotalDiscounts)
                 </div>
             </div>
@@ -39,13 +43,29 @@
                 <div class="group-row-label">
                     @Html.DisplayNameFor(model => model.Total)
                 </div>
-                <div class="group-row-data cpf-cnpj">
+                <div class="group-row-data">
                     @Html.DisplayFor(model => model.Total)
                 </div>
             </div>
         </div>
     </div>
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
+        <span class="group-desc">Serviços</span>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.Budget.ServiceIds)
+                </div>
+                @foreach (var service in Model.Budget.Services)
+                {
+                    <div class="group-row-data">
+                        @service.Description
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="group-data mb-3">
         <span class="group-desc">Outros</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">

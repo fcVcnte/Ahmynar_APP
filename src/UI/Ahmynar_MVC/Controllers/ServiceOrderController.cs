@@ -1,10 +1,12 @@
 ﻿using Ahmynar_MVC.Contracts;
 using Ahmynar_MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Ahmynar_MVC.Controllers
 {
+    [Authorize]
     public class ServiceOrderController : Controller
     {
         private readonly IServiceOrderService _serviceOrderServ;
@@ -34,7 +36,7 @@ namespace Ahmynar_MVC.Controllers
         public async Task<ActionResult> Create()
         {
             var budgets = await _budgetServ.GetBudgets();
-            var budgetItems = new SelectList(budgets, "Id", "Number");
+            var budgetItems = new SelectList(budgets.Where(x => x.Status == Ahmynar_Domain.Enums.StatusDescription.Open), "Id", "NumberTotal");
             var model = new CreateServiceOrderVM
             {
                 Budgets = budgetItems
@@ -62,7 +64,7 @@ namespace Ahmynar_MVC.Controllers
             }
 
             var budgets = await _budgetServ.GetBudgets();
-            var budgetItems = new SelectList(budgets, "Id", "Number");
+            var budgetItems = new SelectList(budgets, "Id", "NumberTotal");
             serviceOrder.Budgets = budgetItems;
 
             return View(serviceOrder);
@@ -73,7 +75,7 @@ namespace Ahmynar_MVC.Controllers
         {
             var serviceOrder = await _serviceOrderServ.GetServiceOrderDetails(id);
             var budgets = await _budgetServ.GetBudgets();
-            var budgetItems = new SelectList(budgets, "Id", "Number");
+            var budgetItems = new SelectList(budgets, "Id", "NumberTotal");
 
             serviceOrder.Budgets = budgetItems;
 

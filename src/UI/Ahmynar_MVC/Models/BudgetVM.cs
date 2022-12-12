@@ -6,6 +6,7 @@ namespace Ahmynar_MVC.Models
     public class BudgetVM : CreateBudgetVM
     {
         public int Id { get; set; }
+        public DateTime DateCreated { get; set; }
         public CustomerVM Customer { get; set; }
         public List<ServiceVM> Services { get; set; }
         public List<ProductVM>? Products { get; set; }
@@ -23,7 +24,11 @@ namespace Ahmynar_MVC.Models
 
         [Required]
         [Display(Name = "Data de Expiração")]
-        public DateTime ExpireDate { get; set; }
+        public DateTime ExpireDate 
+        { 
+            get { return expireDate; } 
+            set { expireDate = value; } 
+        }
 
         [Display(Name = "Valor total de Serviços")]
         public float? TotalServices { get; set; }
@@ -51,5 +56,12 @@ namespace Ahmynar_MVC.Models
         [Display(Name = "Produtos")]
         public List<int>? ProductIds { get; set; }
         public SelectList ProductsList { get; set; }
+
+        private DateTime expireDate = DateTime.Now.Date.AddDays(30);
+
+        public string NumberTotal
+        {
+            get { return Number.ToString() + " | [R$" + Total.ToString() + "] "; }
+        }
     }
 }

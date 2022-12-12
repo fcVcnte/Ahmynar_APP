@@ -1,0 +1,73 @@
+﻿@model Ahmynar_MVC.Models.AccountRegisterVM
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+</head>
+
+<div class="login-form d-flex flex-column justify-content-center">
+    <form asp-action="Register" class="w-75 mb-5">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h5 class="d-flex justify-content-center mb-5">Registrar usuário</h5>
+        <div class="group-row d-flex flex-column w-100 mb-3">
+            <div class="group-row-label w-100">
+                <label asp-for="FirstName" class="control-label w-100"></label>
+            </div>
+            <div class="group-row-data w-100">
+                <input asp-for="FirstName" class="input-data w-100" />
+            </div>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="group-row d-flex flex-column w-100 mb-3">
+            <div class="group-row-label w-100">
+                <label asp-for="LastName" class="control-label w-100"></label>
+            </div>
+            <div class="group-row-data w-100">
+                <input asp-for="LastName" class="input-data w-100" />
+            </div>
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="group-row d-flex flex-column w-100 mb-3">
+            <div class="group-row-label w-100">
+                <label asp-for="Email" class="control-label w-100"></label>
+            </div>
+            <div class="group-row-data w-100">
+                <input asp-for="Email" id="emailText" class="input-data w-100" />
+            </div>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="group-row d-flex flex-column w-100 mb-3">
+            <div class="group-row-label w-100">
+                <label asp-for="UserName" class="control-label w-100"></label>
+            </div>
+            <div class="group-row-data w-100">
+                <input asp-for="UserName" class="input-data w-100" />
+            </div>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="group-row d-flex flex-column w-100 mb-3">
+            <div class="group-row-label w-100">
+                <label asp-for="Password" class="control-label w-100"></label>
+            </div>
+            <div class="group-row-data w-100">
+                <input asp-for="Password" id="passwordText" class="input-data w-100" />
+            </div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="footer-buttoms d-flex mt-5 w-100">
+            <button type="submit" value="Register" class="btn-details m-0 w-100">Registrar</button>
+        </div>
+    </form>
+    <form asp-action="Login" method="get" class="d-flex justify-content-center mt-5 w-75">
+        <button class="button-register">Voltar</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

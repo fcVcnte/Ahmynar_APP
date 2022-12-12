@@ -26,6 +26,7 @@ namespace Ahmynar_MVC.Services
                 if (sale.TypeSale == Ahmynar_Domain.Enums.TypeSale.BudgetSale)
                 {
                     CreateSaleBudgetDto createSale = _mapper.Map<CreateSaleBudgetDto>(sale);
+                    AddBearerToken();
                     var apiResponse = await _client.SaleBudgetAsync(createSale);
                     if (apiResponse.Success)
                     {
@@ -44,6 +45,7 @@ namespace Ahmynar_MVC.Services
                 else
                 {
                     CreateSaleProductsDto createSale = _mapper.Map<CreateSaleProductsDto>(sale);
+                    AddBearerToken();
                     var apiResponse = await _client.SaleProductsAsync(createSale);
 
                     if (apiResponse.Success)
@@ -69,12 +71,14 @@ namespace Ahmynar_MVC.Services
 
         public async Task<SaleVM> GetSaleDetails(int id)
         {
+            AddBearerToken();
             var sale = await _client.SaleAsync(id);
             return _mapper.Map<SaleVM>(sale);
         }
 
         public async Task<List<SaleVM>> GetSales()
         {
+            AddBearerToken();
             var sales = await _client.SaleAllAsync();
             return _mapper.Map<List<SaleVM>>(sales);
         }

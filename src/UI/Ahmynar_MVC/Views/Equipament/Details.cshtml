@@ -4,11 +4,37 @@
     ViewData["Title"] = "Detalhes do Equipamento";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Equipament/equipament.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Detalhes do Equipamento</h1>
 
 <div class="detail-page d-flex flex-column mb-4">
     <h4 class="detail-name">@Html.DisplayFor(model => model.Description) ► @Html.DisplayFor(model => model.TypeEquipament)</h4>
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
+        <span class="group-desc">Dados do cliente</span>
+        <div class="d-flex justify-content-between mt-2">
+            <div class="group-row d-flex flex-column">
+                <div class="group-row-label">
+                    @Html.DisplayNameFor(model => model.CustomerId)
+                </div>
+                @if (Model.Customer.TradeName == null)
+                {
+                    <div class="group-row-data">
+                        @Html.DisplayFor(model => model.Customer.CustomerName)
+                    </div>
+                }
+                else
+                {
+                    <div class="group-row-data">
+                        @Html.DisplayFor(model => model.Customer.TradeName)
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="group-data mb-3">
         <span class="group-desc">Dados técnicos</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">
@@ -29,7 +55,7 @@
             </div>
         </div>
     </div>
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
         <span class="group-desc">Outros</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">

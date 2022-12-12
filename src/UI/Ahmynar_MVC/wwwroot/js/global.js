@@ -10,28 +10,26 @@
         }
     });
 
-    $(".cellphone-num").each(function () {
-        $(this).mask('(00) 00000-0000', { reverse: true });
-    });
+    $(".cpf-num").mask('000.000.000-00');
+    $(".cnpj-num").mask('00.000.000/0000-00');
+    $(".rg-num").mask('00.000.000-0');
+    $(".cellphone-num").mask('(00) 00000-0000');    
+    $(".phone-num").mask('(00) 0000-0000');
+    $(".cep-num").mask('00000-000');
+    $(".money-num").mask('000.000,00', { reverse: true });
+    $(".budget-num").mask('000000');
+    $(".so-num").mask('00000');
 
-    $(".phone-num").each(function () {
-        $(this).mask('(00) 0000-0000', { reverse: true });
-    });
+    let searchWord = function () {
+        let keyword = $("input[name='filter']").val();
 
-    $(".cep-num").each(function () {
-        $(this).mask('00000-000', { reverse: true });
-    });
+        console.log(keyword)
 
-    //    let keyword = $("input[name='filter']").val();
-
-    //    console.log(keyword)
-
-    //    $(".index-table").unmark({
-    //        done: function () {
-    //            $(".index-table").mark(keyword);
-    //        }
-    //    });
-
-    //    $("input[name='filter']").on("input", mark);
-    //}
+        $(".index-table").unmark({
+            done: function () {
+                $(".index-table").mark(keyword);
+            }
+        });
+    }
+    $("input[name='filter']").on("input", searchWord);
 });

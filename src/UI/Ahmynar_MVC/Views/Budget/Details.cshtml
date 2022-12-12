@@ -4,41 +4,51 @@
     ViewData["Title"] = "Detalhes do Orçamento";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Budget/budget.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Detalhes do Orçamento</h1>
 
 <div class="detail-page d-flex flex-column mb-4">
     <h4 class="detail-name">@Html.DisplayFor(model => model.Number) ► @Html.DisplayFor(model => model.Status)</h4>
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
         <span class="group-desc">Dados dos produtos</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">
                 <div class="group-row-label">
-                    @Html.DisplayNameFor(model => model.Products)
+                    @Html.DisplayNameFor(model => model.ProductIds)
                 </div>
-                <div class="group-row-data">
-                    @Html.DisplayFor(model => model.Products)
-                </div>
+                @foreach (var product in Model.Products)
+                {
+                    <div class="group-row-data">
+                        @product.Description
+                    </div>
+                }
             </div>
             <div class="group-row d-flex flex-column">
                 <div class="group-row-label">
                     @Html.DisplayNameFor(model => model.TotalProducts)
                 </div>
-                <div class="group-row-data cpf-cnpj">
+                <div class="group-row-data">
                     @Html.DisplayFor(model => model.TotalProducts)
                 </div>
             </div>
         </div>
     </div>
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
         <span class="group-desc">Dados dos serviços</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">
                 <div class="group-row-label">
-                    @Html.DisplayNameFor(model => model.Services)
+                    @Html.DisplayNameFor(model => model.ServiceIds)
                 </div>
-                <div class="group-row-data phone-num">
-                    @Html.DisplayFor(model => model.Services)
-                </div>
+                @foreach (var service in Model.Services)
+                {
+                    <div class="group-row-data">
+                        @service.Description
+                    </div>
+                }
             </div>
             <div class="group-row d-flex flex-column">
                 <div class="group-row-label">
@@ -50,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
         <span class="group-desc">Dados do orçamento</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">
@@ -63,10 +73,10 @@
             </div>
             <div class="group-row d-flex flex-column">
                 <div class="group-row-label">
-                    @Html.DisplayNameFor(model => model.ExpireDate)
+                    @Html.DisplayNameFor(model => model.Total)
                 </div>
                 <div class="group-row-data">
-                    @Html.DisplayFor(model => model.ExpireDate)
+                    @Html.DisplayFor(model => model.Total)
                 </div>
             </div>
             <div class="group-row d-flex flex-column">
@@ -79,7 +89,7 @@
             </div>
         </div>
     </div>
-    <div class="group-data mb-2">
+    <div class="group-data mb-3">
         <span class="group-desc">Outros</span>
         <div class="d-flex justify-content-between mt-2">
             <div class="group-row d-flex flex-column">

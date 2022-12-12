@@ -1,0 +1,74 @@
+﻿body {
+    display: flex;
+    align-items: center;
+    background: rgb(67,47,96);
+    background: linear-gradient(90deg, rgba(67,47,96,1) 0%, rgba(67,47,101,1) 45%, rgba(24,24,24,1) 45%, rgba(24,24,24,1) 100%);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.login-form {
+    background-color: transparent;
+    padding: 15rem 0 15rem 45rem;
+    -webkit-box-shadow: 0px 0px 76px -7px rgba(10,10,10,1);
+    -moz-box-shadow: 0px 0px 76px -7px rgba(10,10,10,1);
+    box-shadow: 0px 0px 76px -7px rgba(10,10,10,1);
+    height: 90vh;
+}
+
+h5 {
+    font: 'Montserrat', sans-serif;
+    font-size: 20px !important;
+    color: #E1E1E1;
+}
+
+.input-data {
+    padding: 0.7rem 1rem !important;
+}
+
+#emailText {
+    text-transform: lowercase !important;
+}
+
+#passwordText {
+    text-transform: none !important;
+}
+
+.div-forget {
+    cursor: pointer;
+    color: #C1C1C1;
+}
+
+    .div-forget:hover {
+        border-bottom: 1px solid #897aa3;
+        color: #897aa3;
+    }
+
+.btn-details {
+    padding: 13px 20px 13px 20px;
+}
+
+    .btn-details:hover {
+        background-color: #5f4d7d;
+        text-decoration: none;
+    }
+
+    .btn-details:active {
+        background-color: #37274f;
+        transform: scale(0.98);
+    }
+
+.button-register {
+    background: none;
+    font-size: 14px;
+    cursor: pointer;
+    border: 0;
+    outline: 0 !important;
+    box-shadow: none !important;
+    color: #C1C1C1;
+}
+
+    .button-register:hover {
+        color: #897aa3;
+    }

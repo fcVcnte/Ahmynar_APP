@@ -8,6 +8,8 @@ namespace Ahmynar_MVC
     {
         public MappingProfile()
         {
+            CreateMap<AccountRegisterVM, RegistrationRequest>().ReverseMap();
+
             CreateMap<BudgetDto, BudgetVM>().ReverseMap();
             CreateMap<CreateBudgetDto, CreateBudgetVM>().ReverseMap();
 

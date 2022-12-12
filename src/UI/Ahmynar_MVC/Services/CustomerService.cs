@@ -26,7 +26,9 @@ namespace Ahmynar_MVC.Services
                 if (customer.TypeCustomer == Ahmynar_Domain.Enums.TypeCustomer.LegalEntity)
                 {
                     CreateLegalEntityCustomerDto createCustomer = _mapper.Map<CreateLegalEntityCustomerDto>(customer);
+                    AddBearerToken();
                     var apiResponse = await _client.LegalEntityPOSTAsync(createCustomer);
+
                     if (apiResponse.Success)
                     {
                         response.Data = apiResponse.Id;
@@ -44,6 +46,7 @@ namespace Ahmynar_MVC.Services
                 else
                 {
                     CreateNaturalPersonCustomerDto createCustomer = _mapper.Map<CreateNaturalPersonCustomerDto>(customer);
+                    AddBearerToken();
                     var apiResponse = await _client.NaturalPersonPOSTAsync(createCustomer);
 
                     if (apiResponse.Success)
@@ -71,6 +74,7 @@ namespace Ahmynar_MVC.Services
         {
             try
             {
+                AddBearerToken();
                 await _client.CustomerDELETEAsync(id);
                 return new Response<int>() { Success = false };
             }
@@ -82,18 +86,21 @@ namespace Ahmynar_MVC.Services
 
         public async Task<CustomerVM> GetCustomerDetails(int id)
         {
+            AddBearerToken();
             var customer = await _client.CustomerGETAsync(id);
             return _mapper.Map<CustomerVM>(customer);
         }
 
         public async Task<List<CustomerVM>> GetCustomers()
         {
+            AddBearerToken();
             var customers = await _client.CustomerAllAsync();
             return _mapper.Map<List<CustomerVM>>(customers);
         }
 
         public async Task<List<CustomerVM>> GetCustomersList()
         {
+            AddBearerToken();
             var customers = await _client.CustomerAllAsync();
             foreach (CustomerDto customer in customers)
             {
@@ -112,12 +119,14 @@ namespace Ahmynar_MVC.Services
                 if (customer.TypeCustomer == Ahmynar_Domain.Enums.TypeCustomer.LegalEntity)
                 {
                     UpdateLegalEntityCustomerDto customerDto = _mapper.Map<UpdateLegalEntityCustomerDto>(customer);
+                    AddBearerToken();
                     await _client.LegalEntityPUTAsync(customerDto);
                     return new Response<int> { Success = true };
                 }
                 else
                 {
                     UpdateNaturalPersonCustomerDto customerDto = _mapper.Map<UpdateNaturalPersonCustomerDto>(customer);
+                    AddBearerToken();
                     await _client.NaturalPersonPUTAsync(customerDto);
                     return new Response<int> { Success = true };
                 }

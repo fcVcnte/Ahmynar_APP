@@ -3,6 +3,7 @@ using Ahmynar_Application.Features.Sale.Requests.Commands;
 using Ahmynar_Application.Features.Sale.Requests.Queries;
 using Ahmynar_Application.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,6 +12,7 @@ namespace Ahmynar_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SaleController : ControllerBase
     {
         private readonly IMediator _mediator;

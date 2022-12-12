@@ -24,6 +24,7 @@ namespace Ahmynar_MVC.Services
             {
                 var response = new Response<int>();
                 CreateServiceDto createService = _mapper.Map<CreateServiceDto>(service);
+                AddBearerToken();
                 var apiResponse = await _client.ServicePOSTAsync(createService);
 
                 if (apiResponse.Success)
@@ -50,6 +51,7 @@ namespace Ahmynar_MVC.Services
         {
             try
             {
+                AddBearerToken();
                 await _client.ServiceDELETEAsync(id);
                 return new Response<int> { Success = false };
             }
@@ -61,12 +63,14 @@ namespace Ahmynar_MVC.Services
 
         public async Task<ServiceVM> GetServiceDetails(int id)
         {
+            AddBearerToken();
             var service = await _client.ServiceGETAsync(id);
             return _mapper.Map<ServiceVM>(service);
         }
 
         public async Task<List<ServiceVM>> GetServices()
         {
+            AddBearerToken();
             var services = await _client.ServiceAllAsync();
             return _mapper.Map<List<ServiceVM>>(services);
         }
@@ -76,6 +80,7 @@ namespace Ahmynar_MVC.Services
             try
             {
                 UpdateServiceDto serviceDto = _mapper.Map<UpdateServiceDto>(service);
+                AddBearerToken();
                 await _client.ServicePUTAsync(serviceDto);
                 return new Response<int> { Success = true };
             }

@@ -13,10 +13,10 @@ namespace Ahmynar_MVC.Models
         [Display(Name = "Tipo do Cliente")]
         public Ahmynar_Domain.Enums.TypeCustomer TypeCustomer { get; set; }
 
-        [Display(Name = "Registro da Companhia")]
+        [Display(Name = "Razão Social")]
         public string? CompanyName { get; set; }
 
-        [Display(Name = "Nome Fantasia")]
+        [Display(Name = "Nome Empresarial")]
         public string? TradeName { get; set; }
 
         [Display(Name = "CNPJ")]
@@ -78,7 +78,7 @@ namespace Ahmynar_MVC.Models
         public string Country { get; set; }
 
         [Required]
-        [Display(Name = "E-Mail")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Display(Name = "Observações")]

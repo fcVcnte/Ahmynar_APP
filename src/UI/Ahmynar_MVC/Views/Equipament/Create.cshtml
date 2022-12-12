@@ -4,6 +4,10 @@
     ViewData["Title"] = "Criar Equipamento";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Equipament/equipament.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Novo Equipamento</h1>
 
 <div class="create-page">
@@ -76,7 +80,7 @@
             </div>
         </div>
         <div class="footer-buttoms d-flex justify-content-end mt-4">
-            <button id="btnBack" class="btn-details">
+            <button type="button" id="btnBack" class="btn-details">
                 <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
             </button>
             <button type="submit" value="Create" class="btn-details">
@@ -92,10 +96,15 @@
     }
 
 <script>
-    $(".selectize-data").selectize({
+    let select = $(".selectize-data").selectize({
         create: false,
         sortField: "text",
         placeholder: "Selecione um cliente"
+    });
+
+    $(document).ready(function() {
+        let selectize = select[0].selectize;
+        selectize.clear();
     });
 
     $("#btnBack").click(function () {

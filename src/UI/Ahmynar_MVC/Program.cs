@@ -1,11 +1,22 @@
 using Ahmynar_MVC.Contracts;
 using Ahmynar_MVC.Services;
 using Ahmynar_MVC.Services.Base;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
+
 builder.Services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("https://localhost:7124"));
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IBudgetService, BudgetService>();
@@ -30,6 +41,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCookiePolicy();
+app.UseAuthentication();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -39,6 +53,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=User}/{action=Login}/{id?}");
 
 app.Run();

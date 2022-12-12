@@ -6,6 +6,7 @@ namespace Ahmynar_MVC.Models
     public class SaleVM : CreateSaleVM
     {
         public int Id { get; set; }
+        public DateTime DateCreated { get; set; }
         public List<ProductVM> Products { get; set; }
         public BudgetVM Budget { get; set; }
     }

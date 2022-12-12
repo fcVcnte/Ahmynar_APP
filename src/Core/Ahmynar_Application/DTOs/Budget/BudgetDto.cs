@@ -20,6 +20,7 @@ namespace Ahmynar_Application.DTOs.Budget
         public float Total { get; set; }
         public string? Obs { get; set; }
         public int CustomerId { get; set; }
+        public DateTime DateCreated { get; set; }
 
         public CustomerDto Customer { get; set; }
         public List<ServiceDto> Services { get; set; }

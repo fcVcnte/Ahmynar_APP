@@ -4,6 +4,10 @@
     ViewData["Title"] = "Editar Cliente";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Customer/customer.css" asp-append-version="true" />
+</head>
+
 <h1 class="page-title">Editar Cliente</h1>
 
 <div class="edit-page">
@@ -55,7 +59,7 @@
                             <label asp-for="Cnpj" class="control-label"></label>
                         </div>
                         <div class="group-row-data">
-                            <input asp-for="Cnpj" id="cnpjNumber" class="input-data" />
+                            <input asp-for="Cnpj" id="cnpjNumber" class="input-data cnpj-num" />
                         </div>
                         <span asp-validation-for="Cnpj" class="text-danger"></span>
                     </div>
@@ -99,7 +103,7 @@
                             <label asp-for="Cpf" class="control-label"></label>
                         </div>
                         <div class="group-row-data">
-                            <input asp-for="Cpf" id="cpfNumber" class="input-data" />
+                            <input asp-for="Cpf" id="cpfNumber" class="input-data cpf-num" />
                         </div>
                         <span asp-validation-for="Cpf" class="text-danger"></span>
                     </div>
@@ -108,7 +112,7 @@
                             <label asp-for="Rg" class="control-label"></label>
                         </div>
                         <div class="group-row-data">
-                            <input asp-for="Rg" id="rgNumber" class="input-data" />
+                            <input asp-for="Rg" id="rgNumber" class="input-data rg-num" />
                         </div>
                         <span asp-validation-for="Rg" class="text-danger"></span>
                     </div>
@@ -132,7 +136,7 @@
                         <label asp-for="Phone" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Phone" class="input-data" />
+                        <input asp-for="Phone" class="input-data phone-num" />
                     </div>
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
@@ -141,7 +145,7 @@
                         <label asp-for="Cellphone" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
-                        <input asp-for="Cellphone" class="input-data" />
+                        <input asp-for="Cellphone" class="input-data cellphone-num" />
                     </div>
                     <span asp-validation-for="Cellphone" class="text-danger"></span>
                 </div>
@@ -157,7 +161,7 @@
             </div>
         </div>
         <div class="d-flex flex-column mb-2 group-data">
-            <span class="group-desc">Dados de contato</span>
+            <span class="group-desc">Dados de endereço</span>
             <div class="d-flex flex-column ">
                 <div class="d-flex justify-content-between">
                     <div class="group-row d-flex flex-column mb-2">
@@ -212,7 +216,7 @@
                             <label asp-for="State" class="control-label"></label>
                         </div>
                         <div class="group-row-data">
-                            <input asp-for="State" class="input-data" />
+                            <input asp-for="State" maxlength="2" class="input-data" />
                         </div>
                         <span asp-validation-for="State" class="text-danger"></span>
                     </div>
@@ -221,7 +225,7 @@
                             <label asp-for="Cep" class="control-label"></label>
                         </div>
                         <div class="group-row-data">
-                            <input asp-for="Cep" class="input-data" />
+                            <input asp-for="Cep" class="input-data cep-num" />
                         </div>
                         <span asp-validation-for="Cep" class="text-danger"></span>
                     </div>
@@ -252,7 +256,7 @@
             </div>
         </div>
         <div class="footer-buttoms d-flex justify-content-end mt-4">
-            <button id="btnBack" class="btn-details">
+            <button type="button" id="btnBack" class="btn-details">
                 <img src="~/icon/back.svg" class="btn-details-icon" /> Voltar
             </button>
             <button type="submit" value="Save" class="btn-details">

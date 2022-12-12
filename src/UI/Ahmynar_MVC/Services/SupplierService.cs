@@ -24,6 +24,7 @@ namespace Ahmynar_MVC.Services
             {
                 var response = new Response<int>();
                 CreateSupplierDto createSupplier = _mapper.Map<CreateSupplierDto>(supplier);
+                AddBearerToken();
                 var apiResponse = await _client.SupplierPOSTAsync(createSupplier);
                 
                 if (apiResponse.Success)
@@ -50,6 +51,7 @@ namespace Ahmynar_MVC.Services
         {
             try
             {
+                AddBearerToken();
                 await _client.SupplierDELETEAsync(id);
                 return new Response<int>() { Success = false };
             }
@@ -61,12 +63,14 @@ namespace Ahmynar_MVC.Services
 
         public async Task<SupplierVM> GetSupplierDetails(int id)
         {
+            AddBearerToken();
             var supplier = await _client.SupplierGETAsync(id);
             return _mapper.Map<SupplierVM>(supplier);
         }
 
         public async Task<List<SupplierVM>> GetSuppliers()
         {
+            AddBearerToken();
             var suppliers = await _client.SupplierAllAsync();
             return _mapper.Map<List<SupplierVM>>(suppliers);
         }
@@ -76,6 +80,7 @@ namespace Ahmynar_MVC.Services
             try
             {
                 UpdateSupplierDto supplierDto = _mapper.Map<UpdateSupplierDto>(supplier);
+                AddBearerToken();
                 await _client.SupplierPUTAsync(supplierDto);
                 return new Response<int> { Success = true };
             }

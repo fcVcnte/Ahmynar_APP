@@ -1,4 +1,5 @@
 ﻿using Ahmynar_MVC.Contracts;
+using System.Net.Http.Headers;
 
 namespace Ahmynar_MVC.Services.Base
 {
@@ -32,10 +33,8 @@ namespace Ahmynar_MVC.Services.Base
         protected void AddBearerToken()
         {
             if (_localStorage.Exists("token"))
-            {
                 _client.HttpClient.DefaultRequestHeaders.Authorization =
-                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _localStorage.GetStorageValue<string>("token"));
-            }
+                    new AuthenticationHeaderValue("Bearer", _localStorage.GetStorageValue<string>("token"));
         }
     }
 }

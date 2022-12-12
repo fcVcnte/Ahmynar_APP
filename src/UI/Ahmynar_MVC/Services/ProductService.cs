@@ -24,6 +24,7 @@ namespace Ahmynar_MVC.Services
             {
                 var response = new Response<int>();
                 CreateProductDto createProduct = _mapper.Map<CreateProductDto>(product);
+                AddBearerToken();
                 var apiResponse = await _client.ProductPOSTAsync(createProduct);
 
                 if (apiResponse.Success)
@@ -50,6 +51,7 @@ namespace Ahmynar_MVC.Services
         {
             try
             {
+                AddBearerToken();
                 await _client.ProductDELETEAsync(id);
                 return new Response<int> { Success = false };
             }
@@ -61,12 +63,14 @@ namespace Ahmynar_MVC.Services
 
         public async Task<ProductVM> GetProductDetails(int id)
         {
+            AddBearerToken();
             var product = await _client.ProductGETAsync(id);
             return _mapper.Map<ProductVM>(product);
         }
 
         public async Task<List<ProductVM>> GetProducts()
         {
+            AddBearerToken();
             var products = await _client.ProductAllAsync();
             return _mapper.Map<List<ProductVM>>(products);
         }
@@ -76,6 +80,7 @@ namespace Ahmynar_MVC.Services
             try
             {
                 UpdateProductDto productDto = _mapper.Map<UpdateProductDto>(product);
+                AddBearerToken();
                 await _client.ProductPUTAsync(productDto);
                 return new Response<int> { Success = true };
             }
@@ -89,8 +94,9 @@ namespace Ahmynar_MVC.Services
         {
             try
             {
+                AddBearerToken();
                 await _client.CheckInAsync(id, quantityIn);
-                return new Response<int> { Success = false };
+                return new Response<int> { Success = true };
             }
             catch (ApiException ex)
             {
@@ -102,8 +108,9 @@ namespace Ahmynar_MVC.Services
         {
             try
             {
+                AddBearerToken();
                 await _client.CheckOutAsync(id, quantityOut);
-                return new Response<int> { Success = false };
+                return new Response<int> { Success = true };
             }
             catch (ApiException ex)
             {
