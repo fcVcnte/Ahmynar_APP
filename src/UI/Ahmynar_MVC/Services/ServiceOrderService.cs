@@ -23,7 +23,6 @@ namespace Ahmynar_MVC.Services
             try
             {
                 var response = new Response<int>();
-                serviceOrder.Total -= (float)serviceOrder.TotalDiscounts;
                 CreateServiceOrderDto createServiceOrder = _mapper.Map<CreateServiceOrderDto>(serviceOrder);
                 AddBearerToken();
                 var apiResponse = await _client.ServiceOrderPOSTAsync(createServiceOrder);

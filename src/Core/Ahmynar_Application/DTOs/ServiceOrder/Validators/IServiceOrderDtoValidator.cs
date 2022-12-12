@@ -23,9 +23,6 @@ namespace Ahmynar_Application.DTOs.ServiceOrder.Validators
                 .NotNull()
                 .IsInEnum();
 
-            RuleFor(p => p.TotalDiscounts)
-                .LessThan(p => p.Total);
-
             RuleFor(p => p.Total)
                .NotNull();
 

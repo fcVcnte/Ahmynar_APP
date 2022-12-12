@@ -23,6 +23,7 @@ namespace Ahmynar_MVC.Services
             try
             {
                 var response = new Response<int>();
+                sale.TotalSale -= (float)sale.TotalDiscounts;
                 if (sale.TypeSale == Ahmynar_Domain.Enums.TypeSale.BudgetSale)
                 {
                     CreateSaleBudgetDto createSale = _mapper.Map<CreateSaleBudgetDto>(sale);

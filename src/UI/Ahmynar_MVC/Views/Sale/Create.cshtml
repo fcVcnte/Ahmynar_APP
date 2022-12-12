@@ -67,6 +67,15 @@
                 </div>
                 <div class="group-row d-flex flex-column">
                     <div class="group-row-label">
+                        <label asp-for="TotalDiscounts" class="control-label"></label>
+                    </div>
+                    <div class="group-row-data">
+                        <input asp-for="TotalDiscounts" id="sumDiscount" class="input-data" disabled="disabled" />
+                    </div>
+                    <span asp-validation-for="TotalDiscounts" class="text-danger"></span>
+                </div>
+                <div class="group-row d-flex flex-column">
+                    <div class="group-row-label">
                         <label asp-for="TotalSale" class="control-label"></label>
                     </div>
                     <div class="group-row-data">
@@ -153,6 +162,7 @@
         const text = $(this).text().trim();
 
         if (text === "") {
+            $("#sumDiscount").prop("disabled", true);
             return $("#sumTotal").val(0);
         }
 
@@ -162,6 +172,7 @@
             return acc + parseInt(value);
         }, 0);
 
+        $("#sumDiscount").prop("disabled", false);
         $("#sumTotal").val(sumBudget);
     });
 
@@ -169,6 +180,7 @@
         const text = $(this).text().trim();
 
         if (text === "") {
+            $("#sumDiscount").prop("disabled", true);
             return $("#sumTotal").val(0);
         }
 
@@ -178,6 +190,7 @@
             return acc + parseInt(value);
         }, 0);
 
+        $("#sumDiscount").prop("disabled", false);
         $("#sumTotal").val(sumProducts);
     });
 </script>

@@ -25,7 +25,11 @@ namespace Ahmynar_MVC.Models
         public int? InstallmentPayment { get; set; }
 
         [Required]
-        [Display(Name = "Valor total da Venda")]
+        [Display(Name = "Valor descontos")]
+        public float? TotalDiscounts { get; set; }
+
+        [Required]
+        [Display(Name = "Valor total")]
         public float TotalSale { get; set; }
 
         [Display(Name = "Observações")]

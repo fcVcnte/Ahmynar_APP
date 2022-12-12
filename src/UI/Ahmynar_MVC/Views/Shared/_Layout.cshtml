@@ -60,7 +60,9 @@
                             <img src="~/icon/user.svg" class="btn-dropdown-icon-user" /> @User.Identity.Name
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownUser">
-                            <a class="dropdown-item anchor-dropdown" asp-area="" asp-controller="User" asp-action="Logout" asp-route-returnUrl="@Url.Action("Login", "User")">Logout</a>
+                            <form method="post" asp-action="Logout" asp-controller="User" asp-route-returnUrl="@Url.Action("Login", "User")">
+                                <button type="submit" class="dropdown-item anchor-dropdown">Logout</button>
+                            </form>
                         </div>
                     </div>
                 </div>

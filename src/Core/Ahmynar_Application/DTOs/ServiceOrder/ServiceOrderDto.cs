@@ -13,7 +13,6 @@ namespace Ahmynar_Application.DTOs.ServiceOrder
         public long Number { get; set; }
         public DateTime? DepartureDate { get; set; }
         public Ahmynar_Domain.Enums.StatusDescription Status { get; set; }
-        public float? TotalDiscounts { get; set; }
         public float Total { get; set; }
         public string? Obs { get; set; }
         public int BudgetId { get; set; }

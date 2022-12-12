@@ -13,6 +13,7 @@ namespace Ahmynar_Domain
         public TypeSale TypeSale { get; set; }
         public PaymentSale PaymentSale { get; set; }
         public int? InstallmentPayment { get; set; }
+        public float? TotalDiscounts { get; set; }
         public float TotalSale { get; set; }
         public string? Obs { get; set; }
         public int? BudgetId { get; set; }

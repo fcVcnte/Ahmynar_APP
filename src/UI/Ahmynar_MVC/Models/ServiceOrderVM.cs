@@ -27,10 +27,6 @@ namespace Ahmynar_MVC.Models
         public Ahmynar_Domain.Enums.StatusDescription Status { get; set; }
 
         [Required]
-        [Display(Name = "Valor total de Descontos")]
-        public float? TotalDiscounts { get; set; }
-
-        [Required]
         [Display(Name = "Valor total")]
         public float Total { get; set; }
 

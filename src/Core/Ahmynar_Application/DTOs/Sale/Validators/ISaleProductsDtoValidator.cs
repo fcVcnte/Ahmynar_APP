@@ -20,6 +20,9 @@ namespace Ahmynar_Application.DTOs.Sale.Validators
                 .NotNull()
                 .IsInEnum();
 
+            RuleFor(p => p.TotalDiscounts)
+                .LessThan(p => p.TotalSale);
+
             RuleFor(s => s.TotalSale)
                 .NotNull();
         }

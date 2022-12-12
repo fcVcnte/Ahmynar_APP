@@ -4585,6 +4585,9 @@ namespace Ahmynar_MVC.Services.Base
         [Newtonsoft.Json.JsonProperty("installmentPayment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? InstallmentPayment { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("totalDiscounts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public float? TotalDiscounts { get; set; }
+
         [Newtonsoft.Json.JsonProperty("totalSale", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public float TotalSale { get; set; }
 
@@ -4607,6 +4610,9 @@ namespace Ahmynar_MVC.Services.Base
 
         [Newtonsoft.Json.JsonProperty("installmentPayment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? InstallmentPayment { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("totalDiscounts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public float? TotalDiscounts { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalSale", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public float TotalSale { get; set; }
@@ -4644,9 +4650,6 @@ namespace Ahmynar_MVC.Services.Base
 
         [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public StatusDescription Status { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("totalDiscounts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public float? TotalDiscounts { get; set; }
 
         [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public float Total { get; set; }
@@ -4966,6 +4969,9 @@ namespace Ahmynar_MVC.Services.Base
         [Newtonsoft.Json.JsonProperty("installmentPayment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? InstallmentPayment { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("totalDiscounts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public float? TotalDiscounts { get; set; }
+
         [Newtonsoft.Json.JsonProperty("totalSale", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public float TotalSale { get; set; }
 
@@ -5017,9 +5023,6 @@ namespace Ahmynar_MVC.Services.Base
 
         [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public StatusDescription Status { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("totalDiscounts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public float? TotalDiscounts { get; set; }
 
         [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public float Total { get; set; }
@@ -5347,9 +5350,6 @@ namespace Ahmynar_MVC.Services.Base
 
         [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public StatusDescription Status { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("totalDiscounts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public float? TotalDiscounts { get; set; }
 
         [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public float Total { get; set; }
