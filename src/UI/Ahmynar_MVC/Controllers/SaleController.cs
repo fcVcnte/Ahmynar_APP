@@ -39,7 +39,7 @@ namespace Ahmynar_MVC.Controllers
         {
             var budgets = await _budgetServ.GetBudgets();
             var products = await _productServ.GetProducts();
-            var budgetItems = new SelectList(budgets, "Id", "NumberTotal");
+            var budgetItems = new SelectList(budgets.Where(x => x.Status == Ahmynar_Domain.Enums.StatusDescription.Open), "Id", "NumberTotal");
             var productItems = new SelectList(products, "Id", "DescSale");
             var model = new CreateSaleVM
             {

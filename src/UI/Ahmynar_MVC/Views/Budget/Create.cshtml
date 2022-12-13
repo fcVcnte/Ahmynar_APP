@@ -14,16 +14,15 @@
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="d-flex justify-content-between radio-div mb-3">
-            @foreach (var s in System.Enum.GetValues(typeof(Ahmynar_Domain.Enums.StatusDescription)))
-            {
-                <div class="d-flex flex-row-reverse align-items-md-center">
-                    <label asp-for="Status" class="form-check-label radio-label">
-                        @(s.ToString() == "Open" ? "Aberto" : s.ToString() == "InQueue" ? "Na fila" : s.ToString() == "InProcess" ? "Em processo" : s.ToString() == "Finished" ? "Finalizado" : "Cancelado")
-                    </label>
-                    <input asp-for="Status" type="radio" value="@((int)s)" class="form-check-input radio-data" id="@s.ToString()" />
-                    <span asp-validation-for="Status" class="text-danger"></span>
+            <div class="group-row d-none">
+                <div class="group-row-label">
+                    <label asp-for="Status" class="control-label"></label>
                 </div>
-            }
+                <div class="group-row-data">
+                    <input asp-for="Status" value="@((int)Ahmynar_Domain.Enums.StatusDescription.Open)" class="input-data so-num" />
+                </div>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
         </div>
         <div class="d-flex flex-column mb-2 group-data">
             <span class="group-desc">Dados dos produtos</span>
